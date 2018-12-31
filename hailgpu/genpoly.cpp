@@ -29,23 +29,26 @@ typedef struct poly {
   int pow2;
   int pow3;
   unsigned long int add;
-  int max;
+  int lessthanoneany;  // during computation of the polynomial did it go below starting point?
+  int lessthanone; // is the polynomial lower than the start?
+  int duplicate;  // was there another polynomial alreay computed?
 } poly_t;
 
 unsigned long powers_of_2[32];
 unsigned long powers_of_3[32];
 
-void compute_poly(unsigned int bits,int width,poly_t *final,poly_t *max){
+void compute_poly(unsigned long bits,int width,poly_t *final,poly_t *max){
+  static unsigned long last_poly_add[32] = { 0 }; // look for duplicates
   int power3 = 0;
   int power2 = 0;
   int steps = 0;
   poly_t partial = { 0 };
   int maxfound = 0;
+  int lessthanoneany = 0;
   double maxratio = 1.0;
   max->pow2 = 0;
   max->pow3 = 0;
   max->add = 0;
-  max->max = 0;
   std::cout << "poly(" << bits << "," << width << ")" << std::endl;
   while (width > 0){
     if (bits & 0x1){
@@ -57,7 +60,6 @@ void compute_poly(unsigned int bits,int width,poly_t *final,poly_t *max){
 	  max->pow3 = power3;
 	  max->pow2 = power2;
 	  max->add = bits;
-	  max->max = 1;
 	  maxratio = ((double) powers_of_3[power3]/powers_of_2[power2]);
 	}
       }
@@ -65,28 +67,36 @@ void compute_poly(unsigned int bits,int width,poly_t *final,poly_t *max){
       bits = bits >> 1;
       width--;
       power2++;
+      if (powers_of_3[power3] < powers_of_2[power2]){
+	lessthanoneany = 1;
+      }
     }
     steps++;
     partial.pow2 = power2;
     partial.pow3 = power3;
     partial.add = bits;
   }
-  if ((double) powers_of_3[power3]/(double) powers_of_2[power2] > 1.0){
-    final->max = 1;
-  } else {
-    final->max = 0;
-  }
   final->pow2 = power2;
   final->pow3 = power3;
   final->add = bits;
+  final->lessthanoneany = lessthanoneany;
+  final->lessthanone = (powers_of_3[power3] < powers_of_2[power2]);
+  if (last_poly_add[power3] == bits && power3 != 0)
+    final->duplicate = 1;
+  else {
+    final->duplicate = 0;
+    last_poly_add[power3] = bits;
+  }
   if (powers_of_3 > 0){
     std::cout << "\t" << powers_of_3[power3] << "(X/" << powers_of_2[power2] << ") + "
-	      << bits << ((final->max)?" greater ":"") << std::endl;
+	      << bits << ((final->lessthanoneany)?" ! lessthan1 ":"")
+	      << ((final->duplicate)?" dup":"") << std::endl;
   } else {
-    std::cout << "\t" << "X/" << powers_of_2[power2] << " + "
-	      << bits << ((final->max)?" greater ":"") << std::endl;      
-  }
-  if (maxfound){
+      std::cout << "\t" << "X/" << powers_of_2[power2] << " + "
+		<< bits << ((final->lessthanoneany)?" ! lessthan1 ":"")
+		<< ((final->duplicate)?" dup":"") << std::endl;      
+    }
+ if (maxfound){
     if (max->pow3 > 0){
       std::cout << "\t" << powers_of_3[max->pow3] << "(X/" << powers_of_2[max->pow2] << ") + "
 		<< bits << " max" << std::endl;
@@ -94,11 +104,18 @@ void compute_poly(unsigned int bits,int width,poly_t *final,poly_t *max){
       std::cout << "\t" << "X/" << powers_of_2[max->pow2] << " + "
 		<< bits << " max" << std::endl;
     }
+  } else {
+    max->pow2 = power2;
+    max->pow3 = power3;
+    max->add = bits;
+    max->lessthanoneany = lessthanoneany;
+    max->lessthanone = final->lessthanone;
+    max->duplicate = final->duplicate;
   }
 }
 
 int main(int argc,char *const argv[]){
-  int i;
+  long i;
   poly_t final_poly,max_poly;
   unsigned long pow2 = 1,pow3 = 1;
   if (parse_options(argc,argv)){
@@ -111,7 +128,7 @@ int main(int argc,char *const argv[]){
     pow3 *= 3;
     pow2 *= 2;
   }
-  for (i=0;i<(1<<width);i++){
+  for (i=0;i<(1UL<<width);i++){
     compute_poly(i,width,&final_poly,&max_poly);
   }
   return 0;
