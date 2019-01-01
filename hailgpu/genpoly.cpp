@@ -4,14 +4,14 @@
 #include <unistd.h>
 #include "config.hpp"
 int width = POLY_WIDTH;
-int pflag = 0;
+int verbose = 0;
 
 int parse_options(int argc,char *const argv[]){
   int opt;
-  while ((opt = getopt(argc,argv,"pw:")) != -1){
+  while ((opt = getopt(argc,argv,"vw:")) != -1){
     switch(opt){
-    case 'p':
-      pflag = 1;
+    case 'v':
+      verbose = 1;
       break;
     case 'w':
       width = std::stoi(optarg);
@@ -49,7 +49,8 @@ void compute_poly(unsigned long bits,int width,poly_t *final,poly_t *max){
   max->pow2 = 0;
   max->pow3 = 0;
   max->add = 0;
-  std::cout << "poly(" << bits << "," << width << ")" << std::endl;
+  if (verbose)
+    std::cout << "/*\npoly(" << bits << "," << width << ")" << std::endl;
   while (width > 0){
     if (bits & 0x1){
       bits = bits * 3 + 1;
@@ -81,28 +82,34 @@ void compute_poly(unsigned long bits,int width,poly_t *final,poly_t *max){
   final->add = bits;
   final->lessthanoneany = lessthanoneany;
   final->lessthanone = (powers_of_3[power3] < powers_of_2[power2]);
-  if (last_poly_add[power3] == bits && power3 != 0)
+  if (last_poly_add[power3] == bits && power3 != 0){
     final->duplicate = 1;
-  else {
+  } else {
     final->duplicate = 0;
     last_poly_add[power3] = bits;
   }
-  if (powers_of_3 > 0){
-    std::cout << "\t" << powers_of_3[power3] << "(X/" << powers_of_2[power2] << ") + "
-	      << bits << ((final->lessthanoneany)?" ! lessthan1 ":"")
-	      << ((final->duplicate)?" dup":"") << std::endl;
-  } else {
+  if (verbose){
+    if (powers_of_3 > 0){
+      std::cout << "\t" << powers_of_3[power3] << "(X/" << powers_of_2[power2] << ") + "
+		<< bits << ((final->lessthanoneany)?" ! lessthan1 ":"")
+		<< ((final->duplicate)?" dup":"")
+		<< std::endl;
+    } else {
       std::cout << "\t" << "X/" << powers_of_2[power2] << " + "
 		<< bits << ((final->lessthanoneany)?" ! lessthan1 ":"")
-		<< ((final->duplicate)?" dup":"") << std::endl;      
+		<< ((final->duplicate)?" dup":"")
+		<< std::endl;
     }
- if (maxfound){
-    if (max->pow3 > 0){
-      std::cout << "\t" << powers_of_3[max->pow3] << "(X/" << powers_of_2[max->pow2] << ") + "
-		<< bits << " max" << std::endl;
-    } else {
-      std::cout << "\t" << "X/" << powers_of_2[max->pow2] << " + "
-		<< bits << " max" << std::endl;
+  }
+  if (maxfound){
+    if (verbose){
+      if (max->pow3 > 0){
+	std::cout << "\t" << powers_of_3[max->pow3] << "(X/" << powers_of_2[max->pow2] << ") + "
+		  << bits << " max" << std::endl;
+      } else {
+	std::cout << "\t" << "X/" << powers_of_2[max->pow2] << " + "
+		  << bits << " max" << std::endl;
+      }
     }
   } else {
     max->pow2 = power2;
@@ -112,6 +119,7 @@ void compute_poly(unsigned long bits,int width,poly_t *final,poly_t *max){
     max->lessthanone = final->lessthanone;
     max->duplicate = final->duplicate;
   }
+  if (verbose) std::cout << "*/" << std::endl;
 }
 
 int main(int argc,char *const argv[]){
