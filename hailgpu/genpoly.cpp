@@ -5,11 +5,15 @@
 #include "config.hpp"
 int width = POLY_WIDTH;
 int verbose = 0;
+int maxcutoff = 0;
 
 int parse_options(int argc,char *const argv[]){
   int opt;
-  while ((opt = getopt(argc,argv,"vw:")) != -1){
+  while ((opt = getopt(argc,argv,"mvw:")) != -1){
     switch(opt){
+    case 'm':
+      maxcutoff = 1;
+      break;
     case 'v':
       verbose = 1;
       break;
@@ -39,6 +43,7 @@ unsigned long powers_of_3[32];
 
 void compute_poly(unsigned long bits,int width,poly_t *final,poly_t *max){
   static unsigned long last_poly_add[32] = { 0 }; // look for duplicates
+  unsigned long savebits = bits;
   int power3 = 0;
   int power2 = 0;
   int steps = 0;
@@ -120,6 +125,21 @@ void compute_poly(unsigned long bits,int width,poly_t *final,poly_t *max){
     max->duplicate = final->duplicate;
   }
   if (verbose) std::cout << "*/" << std::endl;
+  if (maxcutoff){
+    if (!final->lessthanoneany){
+      std::cout << "\t" << savebits << "," << std::endl;
+    }
+  }
+}
+
+void print_maxcutoff_start(int width){
+  std::cout << "// maxcutoff " << std::endl;
+  std::cout << "int maxcutoff_width = " << width << ";" << std::endl;
+  std::cout << "unsigned int maxcutoff_value[] = {" << std::endl;
+}
+
+void print_maxcutoff_finish(int width){
+  std::cout << "};" << std::endl;
 }
 
 int main(int argc,char *const argv[]){
@@ -136,8 +156,10 @@ int main(int argc,char *const argv[]){
     pow3 *= 3;
     pow2 *= 2;
   }
+  if (maxcutoff) print_maxcutoff_start(width);
   for (i=0;i<(1UL<<width);i++){
     compute_poly(i,width,&final_poly,&max_poly);
   }
+  if (maxcutoff) print_maxcutoff_finish(width);
   return 0;
 }
