@@ -6,13 +6,21 @@
 int width = POLY_WIDTH;
 int verbose = 0;
 int maxcutoff = 0;
+int phflag = 0;
+int pflag = 0;
 
 int parse_options(int argc,char *const argv[]){
   int opt;
-  while ((opt = getopt(argc,argv,"mvw:")) != -1){
+  while ((opt = getopt(argc,argv,"mpPvw:")) != -1){
     switch(opt){
     case 'm':
       maxcutoff = 1;
+      break;
+    case 'P':
+      phflag = 1;
+      break;
+    case 'p':
+      pflag = 1;
       break;
     case 'v':
       verbose = 1;
@@ -130,6 +138,12 @@ void compute_poly(unsigned long bits,int width,poly_t *final,poly_t *max){
       std::cout << "\t" << savebits << "," << std::endl;
     }
   }
+  if (pflag){
+    std::cout << "\t{ " << (powers_of_3[max->pow3] > powers_of_2[max->pow2]) << ", "
+	      << powers_of_3[max->pow3] << ", "
+	      << max->pow2 << ", "
+	      << max->add << "}, // " << savebits << std::endl;
+  }
 }
 
 void print_maxcutoff_start(int width){
@@ -139,6 +153,43 @@ void print_maxcutoff_start(int width){
 }
 
 void print_maxcutoff_finish(int width){
+  std::cout << "};" << std::endl;
+}
+
+void print_polyheader(int width){
+  if (width > 32){
+    std::cerr << "max width is 32" << std::endl;
+    return;
+  } else if (width <= 0){
+    std::cerr << "min width is 1" << std::endl;
+    return;    
+  }
+  std::cout << "#define POLY_WIDTH " << width << std::endl;
+  std::cout << "struct poly {" << std::endl;
+  std::cout << "\tbool gtone;" << std::endl;
+  if (powers_of_3[width-1] < (1l << 16)){
+    std::cout << "\tunsigned short pow3;" << std::endl;
+    std::cout << "\tunsigned short pow2;" << std::endl;
+    std::cout << "\tunsigned int add;" << std::endl;
+  } else if (powers_of_3[width-1] < (1UL << 32)){
+    std::cout << "\tunsigned int pow3;" << std::endl;
+    std::cout << "\tunsigned int pow2;" << std::endl;
+    std::cout << "\tunsigned long add;" << std::endl;    
+  } else {
+    std::cout << "\tunsigned long pow3;" << std::endl;
+    std::cout << "\tunsigned long pow2;" << std::endl;
+    std::cout << "\tunsigned long add;" << std::endl;
+  }
+  std::cout << "};" << std::endl;
+  std::cout << "extern struct poly poly_table[];" << std::endl;
+}
+
+void print_poly_start(int width){
+  std::cout << "#include \"poly" << width << ".hpp\"" << std::endl;
+  std::cout << "struct poly poly_table[] = {" << std::endl;
+}
+
+void print_poly_finish(int width){
   std::cout << "};" << std::endl;
 }
 
@@ -157,9 +208,12 @@ int main(int argc,char *const argv[]){
     pow2 *= 2;
   }
   if (maxcutoff) print_maxcutoff_start(width);
+  if (phflag) print_polyheader(width);
+  if (pflag) print_poly_start(width);
   for (i=0;i<(1UL<<width);i++){
     compute_poly(i,width,&final_poly,&max_poly);
   }
   if (maxcutoff) print_maxcutoff_finish(width);
+  if (pflag) print_poly_finish(width);  
   return 0;
 }
