@@ -54,7 +54,9 @@ void hailmax16(digit_t *n,int *maxfound){
 void hailmax32(digit_t *n,int *maxfound){
   unsigned int n0 = n[0], n1 = n[1], n2 = 0, n3 = 0;
   unsigned int start0 = n0, start1 = n1;
+  //  std::cout << "hailmax32(" << n1 << "," << n0 << ")" << std::endl;
   do {
+    // std::cout << "\t" << (n1<<16)+n0 << std::endl;
     if (n0 & 0x1){
       n0 = n0 * 3 + 1;
       n1 = n1 * 3 + (n0 >> 16);
@@ -116,8 +118,12 @@ void hailmax32p(digit_t *n,int *maxfound){
   unsigned int lastbits;
   unsigned int shiftcnt;
   unsigned int mul3val;
+  unsigned int mask = ((1u << POLY_WIDTH)-1);
+  //  std::cout << "hailmax32p(" << n1 << "," << n0 << ")" << std::endl;
   do {
-    lastbits = n0 & ((1<<1ul << POLY_WIDTH)-1);
+    //    std::cout << "\t" << (n1<<16)+n0 << std::endl;    
+    lastbits = n0 & mask;
+    n0 = n0 & ~mask;
     // shift by power of 2
     if (shiftcnt = poly_table[lastbits].pow2){
       n0 = (n0 >> shiftcnt) | (n1 << (16-shiftcnt));
@@ -207,5 +213,14 @@ void search_block0(void){
 }
 
 int main(void){
+  int maxfound = 0;
+  /*
+  digit_t n[MAX_DIGIT] = { 0 };
+  n[0] = 5;
+  n[1] = 1;
+  hailmax32(n,&maxfound);
+  hailmax32p(n,&maxfound);
+  return 0;
+  */
   search_block0();
 }

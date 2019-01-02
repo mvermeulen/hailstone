@@ -9,7 +9,7 @@ WIDTH=32
 hailmax:	hailmax.o cutoff24.o poly10.o
 	$(CXX) -o hailmax hailmax.o cutoff24.o poly10.o
 
-hailmax.o:	hailmax.cpp config.hpp
+hailmax.o:	hailmax.cpp config.hpp poly10.hpp
 	$(CXX) $(CXXOPTS) -c hailmax.cpp 
 
 genpoly:	genpoly.cpp config.hpp
