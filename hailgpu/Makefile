@@ -1,6 +1,6 @@
 #
 CXX=g++
-CXXOPTS=-g -std=c++11
+CXXOPTS=-O3 -std=c++11
 HCC=/opt/rocm/bin/hcc
 HCCOPTS=`/opt/rocm/bin/hcc-config --cxxflags`
 HCCLDOPTS=`/opt/rocm/bin/hcc-config --ldflags`
@@ -45,7 +45,7 @@ poly14.hpp:	genpoly
 poly12.hpp:	genpoly
 	./genpoly -P -w 12 > poly12.hpp
 poly10.hpp:	genpoly
-	./genpoly -P -w 10 > poly10.hpp
+	./genpoly -P -w 10 -t 5 > poly10.hpp
 poly8.hpp:	genpoly
 	./genpoly -P -w 8 > poly8.hpp
 poly6.hpp:	genpoly
@@ -74,7 +74,7 @@ poly14.cpp:	genpoly poly14.hpp
 poly12.cpp:	genpoly poly12.hpp
 	./genpoly -p -w 12 > poly12.cpp
 poly10.cpp:	genpoly poly10.hpp
-	./genpoly -p -w 10 -t 5 > poly10.cpp
+	./genpoly -p -w 10 > poly10.cpp
 poly8.cpp:	genpoly poly8.hpp
 	./genpoly -p -w 8 > poly8.cpp
 poly6.cpp:	genpoly poly6.hpp

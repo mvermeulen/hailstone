@@ -12,7 +12,7 @@ int global_max_n = 1;
 void report_peak(digit_t *n){
   int i;
   int highdigit = 0;
-  std::cout << "Peak in values:";
+  std::cout << std::hex << "Peak in values:";
   for (i=MAX_DIGIT-1;i>=0;i--){
     if (highdigit){
       std::cout << " " << global_max[i];
@@ -23,7 +23,7 @@ void report_peak(digit_t *n){
       highdigit = 1;
     }
   }
-  std::cout << " for <" << n[3] << "," << n[2] << "," << n[1] << "," << n[0] << ">" << std::endl;
+  std::cout << " for <" << n[3] << "," << n[2] << "," << n[1] << "," << n[0] << ">" << std::dec << std::endl;
 }
 
 // search for maximum value up to 2^16
