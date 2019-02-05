@@ -8,10 +8,11 @@ int verbose = 0;
 int maxcutoff = 0;
 int phflag = 0;
 int pflag = 0;
+int maxpow3 = 0;
 
 int parse_options(int argc,char *const argv[]){
   int opt;
-  while ((opt = getopt(argc,argv,"mpPvw:")) != -1){
+  while ((opt = getopt(argc,argv,"mpPt:vw:")) != -1){
     switch(opt){
     case 'm':
       maxcutoff = 1;
@@ -21,6 +22,9 @@ int parse_options(int argc,char *const argv[]){
       break;
     case 'p':
       pflag = 1;
+      break;
+    case 't':
+      maxpow3 = std::stoi(optarg);
       break;
     case 'v':
       verbose = 1;
@@ -68,7 +72,17 @@ void compute_poly(unsigned long bits,int width,poly_t *final,poly_t *max){
     if (bits & 0x1){
       bits = bits * 3 + 1;
       power3++;
-      if (powers_of_3[power3] > powers_of_2[power2]){
+      if (maxpow3 && (power3 > maxpow3)){
+	// do nothing, already saved by following lines
+      } else if (maxpow3 && (power3 == maxpow3)){
+	if ((maxfound == 0) || (((double) powers_of_3[power3]/powers_of_2[power2]) > maxratio)){
+	  maxfound = 1;
+	  max->pow3 = power3;
+	  max->pow2 = power2;
+	  max->add = bits;
+	  maxratio = ((double) powers_of_3[power3]/powers_of_2[power2]);	  
+	}
+      } else if (powers_of_3[power3] > powers_of_2[power2]){
 	if (((double) powers_of_3[power3]/powers_of_2[power2]) > maxratio){
 	  maxfound = 1;
 	  max->pow3 = power3;
