@@ -168,6 +168,7 @@ void print_maxcutoff_start(int width){
 
 void print_maxcutoff_finish(int width){
   std::cout << "};" << std::endl;
+  std::cout << "int maxcutoff_num = sizeof(maxcutoff_value)/sizeof(maxcutoff_value[0]);" << std::endl;
 }
 
 void print_polyheader(int width){

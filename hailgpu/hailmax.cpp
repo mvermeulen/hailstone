@@ -4,6 +4,7 @@
 #include "poly10.hpp"
 
 extern int maxcutoff_width;
+extern int maxcutoff_num;
 extern unsigned int maxcutoff_value[];
 
 digit_t global_max[MAX_DIGIT] = { 0 };
@@ -252,6 +253,66 @@ void hailwmax24p(wdigit_t *n,int *maxfound){
   } while (1);
 }
 
+// search for maximum value up to 2^36
+void hailwmax36p(wdigit_t *n,int *maxfound){
+  unsigned int n0 = n[0], n1 = n[1], n2 = 0;
+  unsigned int lastbits;
+  unsigned int mask = ((1u << POLY_WIDTH)-1);
+  unsigned int shiftcnt;
+  unsigned int mul3val;
+  unsigned int start0 = n0, start1 = n1;
+  //  std::cout << "hailwmax24p - " << n0 << std::endl;      
+  do {
+    // std::cout << "val - " << n0 << std::endl;    
+    lastbits = n0 & mask;
+    n0 = n0 & ~mask;
+    // shift by power of 2
+    if (shiftcnt = poly_table[lastbits].pow2){
+      n0 = (n0 >> shiftcnt) | (n1 << (24-shiftcnt));
+      n1 = (n1 >> shiftcnt) | (n2 << (24-shiftcnt));
+      n2 = (n2 >> shiftcnt);
+      n0 &= 0xffffff;
+      n1 &= 0xffffff;
+    }
+    // multiply by power of 3 and add
+    mul3val = poly_table[lastbits].pow3;
+    n0 = n0 * mul3val + poly_table[lastbits].add;
+    n1 = n1 * mul3val + (n0 >> 24);
+    n2 = n2 * mul3val + (n1 >> 24);
+    n0 &= 0xffffff;
+    n1 &= 0xffffff;    
+    // check for greater or less
+    if (poly_table[lastbits].gtone){
+      if (n2 > global_wmax[2]){
+	*maxfound = 1;
+	global_wmax[0] = n0;
+	global_wmax[1] = n1;
+	global_wmax[2] = n2;	
+	continue;
+      } else if (n2 < global_wmax[2]){
+	continue;
+      }
+      // at this point n2 == global_wmax[2]
+      if (n1 > global_wmax[1]){
+	*maxfound = 1;
+	global_wmax[0] = n0;
+	global_wmax[1] = n1;	
+      } else if (n1 < global_wmax[1]){
+	continue;
+      }
+      // at this point n1 == global_wmax[1]
+      if (n0 > global_wmax[0]){
+	// std::cout << "max - " << n0 << std::endl;
+	*maxfound = 1;
+	global_wmax[0] = n0;
+      }
+      continue;
+    } else {
+      if ((n1 < start1)||((n1 == start1) && (n0 <= start1))) return;
+    }
+  } while (1);
+}
+
 void search_block0(void){
   unsigned int i,j;
   int maxfound = 0;
@@ -291,7 +352,20 @@ void wsearch_block0(void){
       maxfound = 0;
     }
   }
+  for (i=1;i<(1l<<12);i++){
+    n[1] = i;
+    for (j=0;j<maxcutoff_num;j++){
+      n[0] = maxcutoff_value[j];
+      hailwmax36p(n,&maxfound);
+      if (maxfound){
+	report_wpeak(n);
+	maxfound = 0;
+      }      
+    }
+  }
 }
+
+
 
 int main(void){
   int maxfound = 0;
