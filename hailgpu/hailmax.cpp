@@ -370,5 +370,5 @@ void wsearch_block0(void){
 int main(void){
   int maxfound = 0;
   wsearch_block0();
-  search_block0();
+  //  search_block0();
 }
