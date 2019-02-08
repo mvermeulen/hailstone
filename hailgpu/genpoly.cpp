@@ -148,7 +148,7 @@ void compute_poly(unsigned long bits,int width,poly_t *final,poly_t *max){
   }
   if (verbose) std::cout << "*/" << std::endl;
   if (maxcutoff){
-    if (!final->lessthanoneany){
+    if (!final->lessthanoneany && !final->duplicate){
       std::cout << "\t" << savebits << "," << std::endl;
     }
   }
