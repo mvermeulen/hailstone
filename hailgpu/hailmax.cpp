@@ -6,6 +6,12 @@
 extern int maxcutoff_width;
 extern int maxcutoff_num;
 extern unsigned int maxcutoff_value[];
+extern int maxcutoff1_num;
+extern unsigned int maxcutoff1_value[];
+extern int maxcutoff3_num;
+extern unsigned int maxcutoff3_value[];
+extern int maxcutoff5_num;
+extern unsigned int maxcutoff5_value[];
 
 digit_t global_max[MAX_DIGIT] = { 0 };
 wdigit_t global_wmax[MAX_DIGIT] = { 0 };
@@ -354,13 +360,37 @@ void wsearch_block0(void){
   }
   for (i=1;i<(1l<<12);i++){
     n[1] = i;
-    for (j=0;j<maxcutoff_num;j++){
-      n[0] = maxcutoff_value[j];
-      hailwmax36p(n,&maxfound);
-      if (maxfound){
-	report_wpeak(n);
-	maxfound = 0;
+    switch(i%3){ // cutoff 5 % 6
+    case 0:
+      for (j=0;j<maxcutoff5_num;j++){
+	n[0] = maxcutoff5_value[j];
+	hailwmax36p(n,&maxfound);
+	if (maxfound){
+	  report_wpeak(n);
+	  maxfound = 0;
+	}      
+      }
+      break;
+    case 1:
+      for (j=0;j<maxcutoff1_num;j++){
+	n[0] = maxcutoff1_value[j];
+	hailwmax36p(n,&maxfound);
+	if (maxfound){
+	  report_wpeak(n);
+	  maxfound = 0;
+	}      
       }      
+      break;
+    case 2:
+      for (j=0;j<maxcutoff3_num;j++){
+	n[0] = maxcutoff3_value[j];
+	hailwmax36p(n,&maxfound);
+	if (maxfound){
+	  report_wpeak(n);
+	  maxfound = 0;
+	}      
+      }      
+      break;
     }
   }
 }
