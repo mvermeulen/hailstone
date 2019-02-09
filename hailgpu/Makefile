@@ -1,13 +1,13 @@
 #
 CXX=g++
-CXXOPTS=-O3 -std=c++11
+CXXOPTS=-O3 -std=c++11 -fopenmp
 HCC=/opt/rocm/bin/hcc
 HCCOPTS=`/opt/rocm/bin/hcc-config --cxxflags`
 HCCLDOPTS=`/opt/rocm/bin/hcc-config --ldflags`
 WIDTH=32
 
 hailmax:	hailmax.o cutoff24.o poly10.o
-	$(CXX) -o hailmax hailmax.o cutoff24.o poly10.o
+	$(CXX) $(CXXOPTS) -o hailmax hailmax.o cutoff24.o poly10.o
 
 hailmax.o:	hailmax.cpp config.hpp poly10.hpp
 	$(CXX) $(CXXOPTS) -c hailmax.cpp 

@@ -1,5 +1,6 @@
 // hailmax.cpp - search for peaks in values
 #include <iostream>
+#include <omp.h>
 #include "config.hpp"
 #include "poly10.hpp"
 
@@ -319,6 +320,89 @@ void hailwmax36p(wdigit_t *n,int *maxfound){
   } while (1);
 }
 
+// search for maximum value up to 2^48
+int hailwmax48p(wdigit_t start1, wdigit_t start0, int setglobalpeak){
+  unsigned int n0 = start0, n1 = start1, n2 = 0, n3 = 0;
+  unsigned int lastbits;
+  unsigned int mask = ((1u << POLY_WIDTH)-1);
+  unsigned int shiftcnt;
+  unsigned int mul3val;
+  int maxfound = 0;
+  do {
+    lastbits = n0 & mask;
+    n0 = n0 & ~mask;
+    // shift by power of 2
+    if (shiftcnt = poly_table[lastbits].pow2){
+      n0 = (n0 >> shiftcnt) | (n1 << (24-shiftcnt));
+      n1 = (n1 >> shiftcnt) | (n2 << (24-shiftcnt));
+      n2 = (n2 >> shiftcnt) | (n3 << (24-shiftcnt));
+      n3 = (n3 >> shiftcnt);
+      n0 &= 0xffffff;
+      n1 &= 0xffffff;
+      n2 &= 0xffffff;
+    }
+    // multiply by power of 3 and add
+    mul3val = poly_table[lastbits].pow3;
+    n0 = n0 * mul3val + poly_table[lastbits].add;
+    n1 = n1 * mul3val + (n0 >> 24);
+    n2 = n2 * mul3val + (n1 >> 24);
+    n3 = n3 * mul3val + (n2 >> 24);
+    n0 &= 0xffffff;
+    n1 &= 0xffffff;    
+    n2 &= 0xffffff;    
+    // check for greater or less
+    if (poly_table[lastbits].gtone){
+      if (n3 > global_wmax[3]){
+	maxfound = 1;
+	if (setglobalpeak){
+	  global_wmax[0] = n0;
+	  global_wmax[1] = n1;
+	  global_wmax[2] = n2;	
+	  global_wmax[3] = n3;
+	} else return maxfound;
+	continue;
+      } else if (n3 < global_wmax[3]){
+	continue;
+      }
+      // at this point n3 == global_wmax[2]
+      if (n2 > global_wmax[2]){
+	maxfound = 1;
+	if (setglobalpeak){
+	  global_wmax[0] = n0;
+	  global_wmax[1] = n1;
+	  global_wmax[2] = n2;
+	} else return maxfound;
+	continue;
+      } else if (n2 < global_wmax[2]){
+	continue;
+      }
+      // at this point n2 == global_wmax[2]
+      if (n1 > global_wmax[1]){
+	maxfound = 1;
+	if (setglobalpeak){
+	  global_wmax[0] = n0;
+	  global_wmax[1] = n1;
+	} else return maxfound;
+      } else if (n1 < global_wmax[1]){
+	continue;
+      }
+      // at this point n1 == global_wmax[1]
+      if (n0 > global_wmax[0]){
+	// std::cout << "max - " << n0 << std::endl;
+	maxfound = 1;
+	if (setglobalpeak){
+	  global_wmax[0] = n0;
+	} else return maxfound;
+      }
+      continue;
+    } else {
+      if ((n1 < start1)||((n1 == start1) && (n0 <= start1))){
+	return maxfound;
+      }
+    }
+  } while (1);
+}
+
 void search_block0(void){
   unsigned int i,j;
   int maxfound = 0;
@@ -395,10 +479,83 @@ void wsearch_block0(void){
   }
 }
 
-
+int wsearch_blockn(unsigned int start){
+  int num_blocks = omp_get_num_procs();
+  int found_peak = 0;
+  int i,j;
+  unsigned int x0,x1;
+  // try searching in parallel
+#pragma omp parallel for shared(found_peak) private(j,x0,x1)
+  for (i = 0;i < num_blocks;i++){
+    x1 = start+i;
+    switch(x1%3){
+    case 0:
+      for (j=0;j<maxcutoff5_num;j++){
+	x0 = maxcutoff5_value[j];
+	if (hailwmax48p(x1,x0,0)) found_peak = 1;
+      }
+      break;
+    case 1:
+      for (j=0;j<maxcutoff1_num;j++){
+	x0 = maxcutoff1_value[j];
+	if (hailwmax48p(x1,x0,0)) found_peak = 1;
+      }
+      break;
+    case 2:
+      for (j=0;j<maxcutoff3_num;j++){
+	x0 = maxcutoff3_value[j];
+	if (hailwmax48p(x1,x0,0)) found_peak = 1;
+      }
+      break;      
+    }
+  }
+  if (!found_peak) return num_blocks;
+  // A peak was found, do a slow sequential search
+  wdigit_t x[MAX_DIGIT] = { 0 };
+  x1 = start;
+  switch((x1)%3){
+  case 0:
+    for (j=0;j<maxcutoff5_num;j++){
+      x0 = maxcutoff5_value[j];
+      if (hailwmax48p(x1,x0,1)){
+	x[1] = x1;
+	x[0] = x0;
+	report_wpeak(x);
+      }
+    }
+    break;
+  case 1:
+    for (j=0;j<maxcutoff1_num;j++){
+      x0 = maxcutoff1_value[j];
+      if (hailwmax48p(x1,x0,1)){
+	x[1] = x1;
+	x[0] = x0;	
+	report_wpeak(x);
+      }
+    }
+    break;
+  case 2:
+    for (j=0;j<maxcutoff3_num;j++){
+      x0 = maxcutoff3_value[j];
+      if (hailwmax48p(x1,x0,1)){
+	x[1] = x1;
+	x[0] = x0;	
+	report_wpeak(x);
+      }
+    }
+    break;      
+  }
+  return 1;
+}
 
 int main(void){
   int maxfound = 0;
+  unsigned int block = 1, count;
   wsearch_block0();
-  //  search_block0();
+  while (block < (1u<<24)){
+    //    std::cout << std::hex << "search " << block << std::dec << std::endl;
+    count = wsearch_blockn(block);
+    if (count == 0) break;
+    block += count;
+  }
 }
