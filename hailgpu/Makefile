@@ -94,6 +94,9 @@ cutoff26.c:	genpoly
 
 cutoff24.c:	genpoly
 	./genpoly -m -w 24 > cutoff24.c
+	./genpoly -m1 -w 24 >> cutoff24.c
+	./genpoly -m3 -w 24 >> cutoff24.c
+	./genpoly -m5 -w 24 >> cutoff24.c
 
 cutoff22.c:	genpoly
 	./genpoly -m -w 22 > cutoff22.c

@@ -6,14 +6,29 @@
 int width = POLY_WIDTH;
 int verbose = 0;
 int maxcutoff = 0;
+int maxcutoff1 = 0;
+int maxcutoff3 = 0;
+int maxcutoff5 = 0;
 int phflag = 0;
 int pflag = 0;
 int maxpow3 = 0;
 
 int parse_options(int argc,char *const argv[]){
   int opt;
-  while ((opt = getopt(argc,argv,"mpPt:vw:")) != -1){
+  while ((opt = getopt(argc,argv,"135mpPt:vw:")) != -1){
     switch(opt){
+    case '1':
+      maxcutoff1 = 1;
+      maxcutoff = 1;
+      break;
+    case '3':
+      maxcutoff3 = 1;
+      maxcutoff = 1;
+      break;
+    case '5':
+      maxcutoff5 = 1;
+      maxcutoff = 1;      
+      break;
     case 'm':
       maxcutoff = 1;
       break;
@@ -149,7 +164,11 @@ void compute_poly(unsigned long bits,int width,poly_t *final,poly_t *max){
   if (verbose) std::cout << "*/" << std::endl;
   if (maxcutoff){
     if (!final->lessthanoneany && !final->duplicate){
-      std::cout << "\t" << savebits << "," << std::endl;
+      std::cout << "\t"
+		<< ((maxcutoff1 && (savebits%3 == 1))?"//":"")
+		<< ((maxcutoff3 && (savebits%3 == 0))?"//":"")
+		<< ((maxcutoff5 && (savebits%3 == 2))?"//":"")
+		<< savebits << "," << std::endl;
     }
   }
   if (pflag){
@@ -161,14 +180,38 @@ void compute_poly(unsigned long bits,int width,poly_t *final,poly_t *max){
 }
 
 void print_maxcutoff_start(int width){
-  std::cout << "// maxcutoff " << std::endl;
-  std::cout << "int maxcutoff_width = " << width << ";" << std::endl;
-  std::cout << "unsigned int maxcutoff_value[] = {" << std::endl;
+  std::cout << "// maxcutoff"
+	    << (maxcutoff1?"1":"")
+	    << (maxcutoff3?"3":"")
+	    << (maxcutoff5?"5":"")
+	    << std::endl;
+  std::cout << "int maxcutoff"
+	    << (maxcutoff1?"1":"")
+	    << (maxcutoff3?"3":"")
+	    << (maxcutoff5?"5":"")
+	    << "_width = " << width << ";" << std::endl;
+  std::cout << "unsigned int maxcutoff"
+	    << (maxcutoff1?"1":"")
+	    << (maxcutoff3?"3":"")
+	    << (maxcutoff5?"5":"")    
+	    << "_value[] = {" << std::endl;
 }
 
 void print_maxcutoff_finish(int width){
   std::cout << "};" << std::endl;
-  std::cout << "int maxcutoff_num = sizeof(maxcutoff_value)/sizeof(maxcutoff_value[0]);" << std::endl;
+  std::cout << "int maxcutoff"
+	    << (maxcutoff1?"1":"")
+	    << (maxcutoff3?"3":"")
+	    << (maxcutoff5?"5":"")    
+	    << "_num = sizeof(maxcutoff"
+	    << (maxcutoff1?"1":"")
+	    << (maxcutoff3?"3":"")
+	    << (maxcutoff5?"5":"")    
+	    << "_value)/sizeof(maxcutoff"
+	    << (maxcutoff1?"1":"")
+	    << (maxcutoff3?"3":"")
+	    << (maxcutoff5?"5":"")    
+	    << "_value[0]);" << std::endl;
 }
 
 void print_polyheader(int width){
