@@ -329,6 +329,8 @@ int hailwmax48p(wdigit_t start1, wdigit_t start0, int setglobalpeak){
   unsigned int mul3val;
   int maxfound = 0;
   do {
+    std::cout << std::hex << "\t" << n3 << " " << n2 << " " << n1 << " " << n0 << std::dec << std::endl;
+
     lastbits = n0 & mask;
     n0 = n0 & ~mask;
     // shift by power of 2
@@ -442,6 +444,7 @@ void wsearch_block0(void){
       maxfound = 0;
     }
   }
+#if 0
   for (i=1;i<(1l<<12);i++){
     n[1] = i;
     switch(i%3){ // cutoff 5 % 6
@@ -477,6 +480,7 @@ void wsearch_block0(void){
       break;
     }
   }
+#endif
 }
 
 int wsearch_blockn(unsigned int start){
@@ -548,11 +552,22 @@ int wsearch_blockn(unsigned int start){
   return 1;
 }
 
+void runtest(){
+  wdigit_t n[MAX_DIGIT] = { 0x41f567, 0x36151 };
+  int maxfound = 0;
+  //  if (hailwmax48p(n[1],n[0],1)) report_wpeak(n);
+  n[1] = 0x83348;
+  n[0] = 0x1ACDEF;
+  if (hailwmax48p(n[1],n[0],1)) report_wpeak(n);  
+}
+
 int main(void){
+  runtest();
+  return 0;
   int maxfound = 0;
   unsigned int block = 1, count;
   wsearch_block0();
-  while (block < (1u<<24)){
+  while (block < (1u<<20)){
     //    std::cout << std::hex << "search " << block << std::dec << std::endl;
     count = wsearch_blockn(block);
     if (count == 0) break;
