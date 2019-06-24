@@ -614,7 +614,7 @@ int xsearch_blockn(unsigned int start){
   int num_blocks = omp_get_num_procs();
   int found_peak = 0;
   int i,j;
-  unsigned int x0,x1;
+  unsigned long x0,x1;
   unsigned long val;
   // try searching in parallel
 #pragma omp parallel for shared(found_peak) private(j,x0,x1)
