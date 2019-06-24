@@ -3,6 +3,7 @@
 #include <omp.h>
 #include "config.hpp"
 #include "poly10.hpp"
+#include "poly16.hpp"
 
 extern int maxcutoff_width;
 extern int maxcutoff_num;
@@ -16,6 +17,7 @@ extern unsigned int maxcutoff5_value[];
 
 digit_t global_max[MAX_DIGIT] = { 0 };
 wdigit_t global_wmax[MAX_DIGIT] = { 0 };
+wdigit_t global_xmax[MAX_DIGIT] = { 0 };
 int global_max_n = 1;
 
 void report_peak(digit_t *n){
@@ -406,6 +408,54 @@ int hailwmax48p(wdigit_t start1, wdigit_t start0, int setglobalpeak){
 	   ((n1 == start1) && (n0 <= start1)))){
 	return maxfound;
       }
+    }
+  } while (1);
+}
+
+// search for maximum value up to 2^48
+void hailxmax48p(xdigit_t *n,int *maxfound){
+  unsigned long n0 = n[0], n1 = 0;
+  unsigned long lastbits;
+  unsigned long mask = ((1u << POLY_XWIDTH)-1);
+  unsigned long shiftcnt;
+  unsigned long mul3val;
+  unsigned long start = n0;
+  //  std::cout << "hailxmax48p - " << n0 << std::endl;      
+  do {
+    // std::cout << "val - " << n0 << std::endl;    
+    lastbits = n0 & mask;
+    n0 = n0 & ~mask;
+    // shift by power of 2
+    if (shiftcnt = polyx_table[lastbits].pow2){
+      n0 = (n0 >> shiftcnt) | (n1 << (48-shiftcnt));
+      n1 = n1 >> shiftcnt;
+      n0 &= 0xffffffffffff;
+    }
+    // multiply by power of 3 and add
+    mul3val = polyx_table[lastbits].pow3;
+    n0 = n0 * mul3val + polyx_table[lastbits].add;
+    n1 = n1 * mul3val + (n0 >> 48);
+    n0 &= 0xffffffffffff;
+    // check for greater or less
+    if (polyx_table[lastbits].gtone){
+      if (n1 > global_xmax[1]){
+	*maxfound = 1;
+	global_xmax[0] = n0;
+	global_xmax[1] = n1;
+	continue;
+      } else if (n1 < global_xmax[1]){
+	continue;
+      }
+      // n1 == global_max[1]
+      if (n0 > global_xmax[0]){
+	// std::cout << "max - " << n0 << std::endl;
+	*maxfound = 1;
+	global_xmax[0] = n0;
+	global_xmax[1] = n1;
+      }
+      continue;
+    } else {
+      if ((n1 == 0) && (n0 <= start)) return;
     }
   } while (1);
 }

@@ -6,10 +6,10 @@ HCCOPTS=`/opt/rocm/bin/hcc-config --cxxflags`
 HCCLDOPTS=`/opt/rocm/bin/hcc-config --ldflags`
 WIDTH=32
 
-hailmax:	hailmax.o cutoff24.o poly10.o
-	$(CXX) $(CXXOPTS) -o hailmax hailmax.o cutoff24.o poly10.o
+hailmax:	hailmax.o cutoff24.o poly10.o poly16.o
+	$(CXX) $(CXXOPTS) -o hailmax hailmax.o cutoff24.o poly10.o poly16.o
 
-hailmax.o:	hailmax.cpp config.hpp poly10.hpp
+hailmax.o:	hailmax.cpp config.hpp poly10.hpp poly16.hpp
 	$(CXX) $(CXXOPTS) -c hailmax.cpp 
 
 genpoly:	genpoly.cpp config.hpp
@@ -39,7 +39,7 @@ poly20.hpp:	genpoly
 poly18.hpp:	genpoly
 	./genpoly -P -w 18 > poly18.hpp
 poly16.hpp:	genpoly
-	./genpoly -P -w 16 > poly16.hpp
+	./genpoly -P -w 16 -t 10 -x > poly16.hpp
 poly14.hpp:	genpoly
 	./genpoly -P -w 14 > poly14.hpp
 poly12.hpp:	genpoly
@@ -68,7 +68,7 @@ poly20.cpp:	genpoly poly20.hpp
 poly18.cpp:	genpoly poly18.hpp
 	./genpoly -p -w 18 > poly18.cpp
 poly16.cpp:	genpoly poly16.hpp
-	./genpoly -p -w 16 > poly16.cpp
+	./genpoly -p -w 16 -t 10 -x > poly16.cpp
 poly14.cpp:	genpoly poly14.hpp
 	./genpoly -p -w 14 > poly14.cpp
 poly12.cpp:	genpoly poly12.hpp
@@ -123,4 +123,4 @@ clean:
 	- rm *~ *.o
 
 clobber:	clean
-	- rm genpoly hailmax
+	- rm genpoly hailmax poly*.cpp poly*.hpp

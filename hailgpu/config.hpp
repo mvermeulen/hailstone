@@ -5,5 +5,6 @@
 
 typedef unsigned short digit_t;    // 16-bit
 typedef unsigned int wdigit_t;     // 24-bit
+typedef unsigned long xdigit_t;    // 48-bit
 #define MAX_DIGIT                8 // 128-bit
 

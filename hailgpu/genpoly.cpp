@@ -12,10 +12,11 @@ int maxcutoff5 = 0;
 int phflag = 0;
 int pflag = 0;
 int maxpow3 = 0;
+int xflag = 0;
 
 int parse_options(int argc,char *const argv[]){
   int opt;
-  while ((opt = getopt(argc,argv,"135mpPt:vw:")) != -1){
+  while ((opt = getopt(argc,argv,"135mpPt:vw:x")) != -1){
     switch(opt){
     case '1':
       maxcutoff1 = 1;
@@ -46,6 +47,9 @@ int parse_options(int argc,char *const argv[]){
       break;
     case 'w':
       width = std::stoi(optarg);
+      break;
+    case 'x':
+      xflag = 1;
       break;
     default:
       std::cerr << "warning: unknown option: " << opt << std::endl;
@@ -222,29 +226,54 @@ void print_polyheader(int width){
     std::cerr << "min width is 1" << std::endl;
     return;    
   }
-  std::cout << "#define POLY_WIDTH " << width << std::endl;
-  std::cout << "struct poly {" << std::endl;
-  std::cout << "\tbool gtone;" << std::endl;
-  if (powers_of_3[width-1] < (1l << 16)){
-    std::cout << "\tunsigned short pow3;" << std::endl;
-    std::cout << "\tunsigned short pow2;" << std::endl;
-    std::cout << "\tunsigned int add;" << std::endl;
-  } else if (powers_of_3[width-1] < (1UL << 32)){
-    std::cout << "\tunsigned int pow3;" << std::endl;
-    std::cout << "\tunsigned int pow2;" << std::endl;
-    std::cout << "\tunsigned long add;" << std::endl;    
+  if (xflag){
+    std::cout << "#define POLY_XWIDTH " << width << std::endl;
+    std::cout << "struct polyx {" << std::endl;
+    std::cout << "\tbool gtone;" << std::endl;
+    if (powers_of_3[width-1] < (1l << 16)){
+      std::cout << "\tunsigned short pow3;" << std::endl;
+      std::cout << "\tunsigned short pow2;" << std::endl;
+      std::cout << "\tunsigned int add;" << std::endl;
+    } else if (powers_of_3[width-1] < (1UL << 32)){
+      std::cout << "\tunsigned int pow3;" << std::endl;
+      std::cout << "\tunsigned int pow2;" << std::endl;
+      std::cout << "\tunsigned long add;" << std::endl;    
+    } else {
+      std::cout << "\tunsigned long pow3;" << std::endl;
+      std::cout << "\tunsigned long pow2;" << std::endl;
+      std::cout << "\tunsigned long add;" << std::endl;
+    }
+    std::cout << "};" << std::endl;
+    std::cout << "extern struct polyx polyx_table[];" << std::endl;
   } else {
-    std::cout << "\tunsigned long pow3;" << std::endl;
-    std::cout << "\tunsigned long pow2;" << std::endl;
-    std::cout << "\tunsigned long add;" << std::endl;
+    std::cout << "#define POLY_WIDTH " << width << std::endl;
+    std::cout << "struct poly {" << std::endl;
+    std::cout << "\tbool gtone;" << std::endl;
+    if (powers_of_3[width-1] < (1l << 16)){
+      std::cout << "\tunsigned short pow3;" << std::endl;
+      std::cout << "\tunsigned short pow2;" << std::endl;
+      std::cout << "\tunsigned int add;" << std::endl;
+    } else if (powers_of_3[width-1] < (1UL << 32)){
+      std::cout << "\tunsigned int pow3;" << std::endl;
+      std::cout << "\tunsigned int pow2;" << std::endl;
+      std::cout << "\tunsigned long add;" << std::endl;    
+    } else {
+      std::cout << "\tunsigned long pow3;" << std::endl;
+      std::cout << "\tunsigned long pow2;" << std::endl;
+      std::cout << "\tunsigned long add;" << std::endl;
+    }
+    std::cout << "};" << std::endl;
+    std::cout << "extern struct poly poly_table[];" << std::endl;    
   }
-  std::cout << "};" << std::endl;
-  std::cout << "extern struct poly poly_table[];" << std::endl;
 }
 
 void print_poly_start(int width){
   std::cout << "#include \"poly" << width << ".hpp\"" << std::endl;
-  std::cout << "struct poly poly_table[] = {" << std::endl;
+  if (xflag){
+    std::cout << "struct polyx polyx_table[] = {" << std::endl;
+  } else {
+    std::cout << "struct poly poly_table[] = {" << std::endl;    
+  }
 }
 
 void print_poly_finish(int width){
