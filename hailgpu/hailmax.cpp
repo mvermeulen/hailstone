@@ -523,12 +523,14 @@ void xsearch_block0(void){
   int maxfound = 0;
   xdigit_t n[MAX_DIGIT] = { 0 };
 
-  for (j=1;j<(1l<<48);j++){
-    n[0] = j;
-    hailxmax48p(n,&maxfound);
-    if (maxfound){
-      report_xpeak(n);
-      maxfound = 0;
+  for (i=0;i<(1l<<24);i++){
+    for (j=0;j<maxcutoff_num;j++){
+      n[0] = (i<<24)+maxcutoff_value[j];
+      hailxmax48p(n,&maxfound);      
+      if (maxfound){
+	report_xpeak(n);
+	maxfound = 0;
+      }
     }
   }
 }
@@ -616,8 +618,10 @@ void runtest(){
 int main(void){
   int maxfound = 0;
   unsigned int block = 1, count;
+
   xsearch_block0();
   return 0;
+
   wsearch_block0();
   while (block < (1u<<24)){
     //    std::cout << std::hex << "search " << block << std::dec << std::endl;
