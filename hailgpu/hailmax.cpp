@@ -54,6 +54,23 @@ void report_wpeak(wdigit_t *n){
   std::cout << " for <" << n[3] << "," << n[2] << "," << n[1] << "," << n[0] << ">" << std::dec << std::endl;
 }
 
+void report_xpeak(xdigit_t *n){
+  long i;
+  int highdigit = 0;
+  std::cout << std::hex << "Peak in values:";
+  for (i=MAX_DIGIT-1;i>=0;i--){
+    if (highdigit){
+      std::cout << " " << global_wmax[i];
+    } else if (global_xmax[i] == 0){
+      continue;
+    } else {
+      std::cout << " " << global_xmax[i];
+      highdigit = 1;
+    }
+  }
+  std::cout << " for <" << n[3] << "," << n[2] << "," << n[1] << "," << n[0] << ">" << std::dec << std::endl;
+}
+
 // search for maximum value up to 2^16
 void hailmax16(digit_t *n,int *maxfound){
   unsigned long int maxvalue = global_max[0] + ((unsigned long) global_max[1] << 16)
@@ -496,6 +513,21 @@ void wsearch_block0(void){
     hailwmax24p(n,&maxfound);
     if (maxfound){
       report_wpeak(n);
+      maxfound = 0;
+    }
+  }
+}
+
+void xsearch_block0(void){
+  unsigned long i,j;
+  int maxfound = 0;
+  xdigit_t n[MAX_DIGIT] = { 0 };
+
+  for (j=1;j<(1l<<48);j++){
+    n[0] = j;
+    hailxmax48p(n,&maxfound);
+    if (maxfound){
+      report_xpeak(n);
       maxfound = 0;
     }
   }
