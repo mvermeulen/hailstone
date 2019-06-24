@@ -1,6 +1,7 @@
 // hailmax.cpp - search for peaks in values
 #include <iostream>
 #include <omp.h>
+#include <string.h>
 #include "config.hpp"
 #include "poly10.hpp"
 #include "poly16.hpp"
@@ -430,13 +431,14 @@ int hailwmax48p(wdigit_t start1, wdigit_t start0, int setglobalpeak){
 }
 
 // search for maximum value up to 2^48
-void hailxmax48p(xdigit_t *n,int *maxfound){
-  unsigned long n0 = n[0], n1 = 0;
+int hailxmax48p(xdigit_t start0, int setglobalpeak){
+  unsigned long n0 = start0, n1 = 0;
   unsigned long lastbits;
   unsigned long mask = ((1u << POLY_XWIDTH)-1);
   unsigned long shiftcnt;
   unsigned long mul3val;
   unsigned long start = n0;
+  int maxfound = 0;
   //  std::cout << "hailxmax48p - " << n0 << std::endl;      
   do {
     // std::cout << "val - " << n0 << std::endl;    
@@ -456,9 +458,11 @@ void hailxmax48p(xdigit_t *n,int *maxfound){
     // check for greater or less
     if (polyx_table[lastbits].gtone){
       if (n1 > global_xmax[1]){
-	*maxfound = 1;
-	global_xmax[0] = n0;
-	global_xmax[1] = n1;
+	maxfound = 1;
+	if (setglobalpeak){
+	  global_xmax[0] = n0;
+	  global_xmax[1] = n1;
+	}
 	continue;
       } else if (n1 < global_xmax[1]){
 	continue;
@@ -466,13 +470,15 @@ void hailxmax48p(xdigit_t *n,int *maxfound){
       // n1 == global_max[1]
       if (n0 > global_xmax[0]){
 	// std::cout << "max - " << n0 << std::endl;
-	*maxfound = 1;
-	global_xmax[0] = n0;
-	global_xmax[1] = n1;
+	maxfound = 1;
+	if (setglobalpeak){
+	  global_xmax[0] = n0;
+	  global_xmax[1] = n1;
+	}
       }
       continue;
     } else {
-      if ((n1 == 0) && (n0 <= start)) return;
+      if ((n1 == 0) && (n0 <= start)) return maxfound;
     }
   } while (1);
 }
@@ -521,14 +527,13 @@ void wsearch_block0(void){
 void xsearch_block0(void){
   unsigned long i,j;
   int maxfound = 0;
-  xdigit_t n[MAX_DIGIT] = { 0 };
+  xdigit_t n;
 
   for (i=0;i<(1l<<24);i++){
     for (j=0;j<maxcutoff_num;j++){
-      n[0] = (i<<24)+maxcutoff_value[j];
-      hailxmax48p(n,&maxfound);      
-      if (maxfound){
-	report_xpeak(n);
+      n = (i<<24)+maxcutoff_value[j];
+      if (hailxmax48p(n,1)){
+	report_xpeak(global_xmax);
 	maxfound = 0;
       }
     }
@@ -604,6 +609,76 @@ int wsearch_blockn(unsigned int start){
   return 1;
 }
 
+int xsearch_blockn(unsigned int start){
+  int num_blocks = omp_get_num_procs();
+  int found_peak = 0;
+  int i,j;
+  unsigned int x0,x1;
+  xdigit_t x[MAX_DIGIT] = { 0 };
+  
+  // try searching in parallel
+#pragma omp parallel for shared(found_peak) private(j,x0,x1)
+  for (i = 0;i < num_blocks;i++){
+    x1 = start+i;
+    switch(x1%3){
+    case 0:
+      for (j=0;j<maxcutoff5_num;j++){
+	x0 = maxcutoff5_value[j];
+	x[0] = x1<<24 + x0;
+	if (hailxmax48p(x[0],0)) found_peak = 1;
+      }
+      break;
+    case 1:
+      for (j=0;j<maxcutoff1_num;j++){
+	x0 = maxcutoff1_value[j];
+	x[0] = x1<<24 + x0;
+	if (hailxmax48p(x[0],0)) found_peak = 1;	
+      }
+      break;
+    case 2:
+      for (j=0;j<maxcutoff3_num;j++){
+	x0 = maxcutoff3_value[j];
+	x[0] = x1<<24 + x0;
+	if (hailxmax48p(x[0],0)) found_peak = 1;	
+      }
+      break;      
+    }
+  }
+  if (!found_peak) return num_blocks;
+  // A peak was found, do a slow sequential search
+  x1 = start;
+  switch((x1)%3){
+  case 0:
+    for (j=0;j<maxcutoff5_num;j++){
+      x0 = maxcutoff5_value[j];
+      x[0] = x1 << 24 + x0;
+      if (hailxmax48p(x[0],1)){
+	report_xpeak(global_xmax);
+      }
+    }
+    break;
+  case 1:
+    for (j=0;j<maxcutoff1_num;j++){
+      x0 = maxcutoff1_value[j];
+      x[0] = x1 << 24 + x0;
+      if (hailxmax48p(x[0],1)){
+	report_xpeak(global_xmax);
+      }      
+    }
+    break;
+  case 2:
+    for (j=0;j<maxcutoff3_num;j++){
+      x0 = maxcutoff3_value[j];
+      x[0] = x1 << 24 + x0;
+      if (hailxmax48p(x[0],1)){
+	report_xpeak(global_xmax);
+      }      
+    }
+    break;      
+  }
+  return 1;
+}
+
 #if 0
 void runtest(){
   wdigit_t n[MAX_DIGIT] = { 0x41f567, 0x36151 };
@@ -615,13 +690,21 @@ void runtest(){
 }
 #endif
 
-int main(void){
+int main(int argc,char **argv){
   int maxfound = 0;
   unsigned int block = 1, count;
 
-  xsearch_block0();
-  return 0;
-
+  if (argc > 1 && !strcmp(argv[1],"x")){
+    xsearch_block0();
+    while (block < (1u<<24)){
+      //    std::cout << std::hex << "search " << block << std::dec << std::endl;
+      count = xsearch_blockn(block);
+      if (count == 0) break;
+      block += count;
+      return 0;
+    }
+  }
+  
   wsearch_block0();
   while (block < (1u<<24)){
     //    std::cout << std::hex << "search " << block << std::dec << std::endl;
