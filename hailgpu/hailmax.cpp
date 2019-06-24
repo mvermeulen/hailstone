@@ -439,6 +439,7 @@ int hailxmax48p(xdigit_t start0, int setglobalpeak){
   unsigned long mul3val;
   unsigned long start = n0;
   int maxfound = 0;
+  int count = 0;
   //  std::cout << "hailxmax48p - " << n0 << std::endl;      
   do {
     // std::cout << "val - " << n0 << std::endl;    
@@ -479,6 +480,11 @@ int hailxmax48p(xdigit_t start0, int setglobalpeak){
       continue;
     } else {
       if ((n1 == 0) && (n0 <= start)) return maxfound;
+    }
+    count++;
+    if (count > 1000000){
+      std::cout << "loop!" << std::endl;
+      exit(0);
     }
   } while (1);
 }
@@ -525,17 +531,12 @@ void wsearch_block0(void){
 }
 
 void xsearch_block0(void){
-  unsigned long i,j;
-  int maxfound = 0;
-  xdigit_t n;
+  unsigned int i,j;
+  wdigit_t n[MAX_DIGIT] = { 0 };
 
-  for (i=0;i<(1l<<24);i++){
-    for (j=0;j<maxcutoff_num;j++){
-      n = (i<<24)+maxcutoff_value[j];
-      if (hailxmax48p(n,1)){
-	report_xpeak(global_xmax);
-	maxfound = 0;
-      }
+  for (i=1;i<(1l<<24);i++){
+    if (hailxmax48p(i,1)){
+      report_xpeak(global_xmax);
     }
   }
 }
@@ -623,21 +624,21 @@ int xsearch_blockn(unsigned int start){
     case 0:
       for (j=0;j<maxcutoff5_num;j++){
 	x0 = maxcutoff5_value[j];
-	val = x1<<24+x0;
+	val = (x1<<24)+x0;
 	if (hailxmax48p(val,0)) found_peak = 1;
       }
       break;
     case 1:
       for (j=0;j<maxcutoff1_num;j++){
 	x0 = maxcutoff1_value[j];
-	val = x1<<24+x0;	
+	val = (x1<<24)+x0;	
 	if (hailxmax48p(val,0)) found_peak = 1;
       }
       break;
     case 2:
       for (j=0;j<maxcutoff3_num;j++){
 	x0 = maxcutoff3_value[j];
-	val = x1<<24+x0;	
+	val = (x1<<24)+x0;	
 	if (hailxmax48p(val,0)) found_peak = 1;
       }
       break;      
@@ -651,7 +652,7 @@ int xsearch_blockn(unsigned int start){
   case 0:
     for (j=0;j<maxcutoff5_num;j++){
       x0 = maxcutoff5_value[j];
-      val = x1<<24+x0;      
+      val = (x1<<24)+x0;      
       if (hailxmax48p(val,1)){
 	x[0] = val;
 	report_xpeak(x);
@@ -661,7 +662,7 @@ int xsearch_blockn(unsigned int start){
   case 1:
     for (j=0;j<maxcutoff1_num;j++){
       x0 = maxcutoff1_value[j];
-      val = x1<<24+x0;      
+      val = (x1<<24)+x0;      
       if (hailxmax48p(val,1)){
 	x[0] = val;	
 	report_xpeak(x);
@@ -671,7 +672,7 @@ int xsearch_blockn(unsigned int start){
   case 2:
     for (j=0;j<maxcutoff3_num;j++){
       x0 = maxcutoff3_value[j];
-      val = x1<<24+x0;      
+      val = (x1<<24)+x0;      
       if (hailxmax48p(val,1)){
 	x[0] = val;	
 	report_xpeak(x);
@@ -700,17 +701,16 @@ int main(int argc,char **argv){
   if (argc > 1 && !strcmp(argv[1],"x")){
     xsearch_block0();
     while (block < (1u<<24)){
-      //    std::cout << std::hex << "search " << block << std::dec << std::endl;
+      //      std::cout << std::hex << "search " << block << std::dec << std::endl;
       count = xsearch_blockn(block);
       if (count == 0) break;
       block += count;
-      return 0;
     }
   }
   
   wsearch_block0();
   while (block < (1u<<24)){
-    //    std::cout << std::hex << "search " << block << std::dec << std::endl;
+    //    std::cout << std::hex << "search " << block << std::dec << std::endl;    
     count = wsearch_blockn(block);
     if (count == 0) break;
     block += count;
