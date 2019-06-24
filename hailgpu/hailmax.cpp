@@ -614,8 +614,7 @@ int xsearch_blockn(unsigned int start){
   int found_peak = 0;
   int i,j;
   unsigned int x0,x1;
-  xdigit_t x[MAX_DIGIT] = { 0 };
-  
+  unsigned long val;
   // try searching in parallel
 #pragma omp parallel for shared(found_peak) private(j,x0,x1)
   for (i = 0;i < num_blocks;i++){
@@ -624,55 +623,59 @@ int xsearch_blockn(unsigned int start){
     case 0:
       for (j=0;j<maxcutoff5_num;j++){
 	x0 = maxcutoff5_value[j];
-	x[0] = x1<<24 + x0;
-	if (hailxmax48p(x[0],0)) found_peak = 1;
+	val = x1<<24+x0;
+	if (hailxmax48p(val,0)) found_peak = 1;
       }
       break;
     case 1:
       for (j=0;j<maxcutoff1_num;j++){
 	x0 = maxcutoff1_value[j];
-	x[0] = x1<<24 + x0;
-	if (hailxmax48p(x[0],0)) found_peak = 1;	
+	val = x1<<24+x0;	
+	if (hailxmax48p(val,0)) found_peak = 1;
       }
       break;
     case 2:
       for (j=0;j<maxcutoff3_num;j++){
 	x0 = maxcutoff3_value[j];
-	x[0] = x1<<24 + x0;
-	if (hailxmax48p(x[0],0)) found_peak = 1;	
+	val = x1<<24+x0;	
+	if (hailxmax48p(val,0)) found_peak = 1;
       }
       break;      
     }
   }
   if (!found_peak) return num_blocks;
   // A peak was found, do a slow sequential search
+  xdigit_t x[MAX_DIGIT] = { 0 };
   x1 = start;
   switch((x1)%3){
   case 0:
     for (j=0;j<maxcutoff5_num;j++){
       x0 = maxcutoff5_value[j];
-      x[0] = x1 << 24 + x0;
-      if (hailxmax48p(x[0],1)){
-	report_xpeak(global_xmax);
+      val = x1<<24+x0;      
+      if (hailxmax48p(val,1)){
+	x[0] = val;
+	report_xpeak(x);
       }
     }
     break;
   case 1:
     for (j=0;j<maxcutoff1_num;j++){
       x0 = maxcutoff1_value[j];
-      x[0] = x1 << 24 + x0;
-      if (hailxmax48p(x[0],1)){
-	report_xpeak(global_xmax);
-      }      
+      val = x1<<24+x0;      
+      if (hailxmax48p(val,1)){
+	x[0] = val;	
+	report_xpeak(x);
+      }
     }
     break;
   case 2:
     for (j=0;j<maxcutoff3_num;j++){
       x0 = maxcutoff3_value[j];
-      x[0] = x1 << 24 + x0;
-      if (hailxmax48p(x[0],1)){
-	report_xpeak(global_xmax);
-      }      
+      val = x1<<24+x0;      
+      if (hailxmax48p(val,1)){
+	x[0] = val;	
+	report_xpeak(x);
+      }
     }
     break;      
   }
