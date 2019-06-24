@@ -17,7 +17,7 @@ extern unsigned int maxcutoff5_value[];
 
 digit_t global_max[MAX_DIGIT] = { 0 };
 wdigit_t global_wmax[MAX_DIGIT] = { 0 };
-wdigit_t global_xmax[MAX_DIGIT] = { 0 };
+xdigit_t global_xmax[MAX_DIGIT] = { 0 };
 int global_max_n = 1;
 
 void report_peak(digit_t *n){
@@ -60,7 +60,7 @@ void report_xpeak(xdigit_t *n){
   std::cout << std::hex << "Peak in values:";
   for (i=MAX_DIGIT-1;i>=0;i--){
     if (highdigit){
-      std::cout << " " << global_wmax[i];
+      std::cout << " " << global_xmax[i];
     } else if (global_xmax[i] == 0){
       continue;
     } else {
@@ -616,6 +616,8 @@ void runtest(){
 int main(void){
   int maxfound = 0;
   unsigned int block = 1, count;
+  xsearch_block0();
+  return 0;
   wsearch_block0();
   while (block < (1u<<24)){
     //    std::cout << std::hex << "search " << block << std::dec << std::endl;
