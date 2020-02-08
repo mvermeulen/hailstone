@@ -105,3 +105,8 @@ struct hail_packet {
   uint32_t maxvalue[MAXDIGITS];
 };
 
+void recover_checkpoint_file(void);
+int check_prediction(unsigned long int blocknum);
+void search_block(uint64_t blocknum);
+void remove_prediction(unsigned long int blocknum);
+void save_checkpoint_file(uint64_t blocknum);
