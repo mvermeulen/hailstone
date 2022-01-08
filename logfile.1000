@@ -1,0 +1,976 @@
+2022-01-08 14:58:54: Search of block: 0
+2022-01-08 14:58:54: 2: 1* 0
+2022-01-08 14:58:54: 3: 7* 16*
+2022-01-08 14:58:54:	6: 8 predicted (0)
+2022-01-08 14:58:54: 6: 8* 16
+2022-01-08 14:58:54: 7: 16* 52*
+2022-01-08 14:58:54:	9: 19 predicted (0)
+2022-01-08 14:58:54: 9: 19* 52
+2022-01-08 14:58:54:	18: 20 predicted (0)
+2022-01-08 14:58:54: 15: 19 160*
+2022-01-08 14:58:54: 18: 20* 160
+2022-01-08 14:58:54: 25: 23* 160
+2022-01-08 14:58:54:	33: 26 predicted (0)
+2022-01-08 14:58:54: 27: 111* 9232*
+2022-01-08 14:58:54:	54: 112 predicted (0)
+2022-01-08 14:58:54: 54: 112* 9232
+2022-01-08 14:58:54: 73: 115* 9232
+2022-01-08 14:58:54:	97: 118 predicted (0)
+2022-01-08 14:58:54: 97: 118* 9232
+2022-01-08 14:58:54:	129: 121 predicted (0)
+2022-01-08 14:58:54: 129: 121* 9232
+2022-01-08 14:58:54:	258: 122 predicted (0)
+2022-01-08 14:58:54: 171: 124* 9232
+2022-01-08 14:58:54:	342: 125 predicted (0)
+2022-01-08 14:58:54: 231: 127* 9232
+2022-01-08 14:58:54:	462: 128 predicted (0)
+2022-01-08 14:58:54: 255: 127 13120*
+2022-01-08 14:58:54: 313: 130* 13120
+2022-01-08 14:58:54:	417: 133 predicted (0)
+2022-01-08 14:58:54: 327: 143* 13120
+2022-01-08 14:58:54:	654: 144 predicted (0)
+2022-01-08 14:58:54: 447: 143 39364*
+2022-01-08 14:58:54: 639: 143 41524*
+2022-01-08 14:58:54: 649: 144* 41524
+2022-01-08 14:58:54:	865: 147 predicted (0)
+2022-01-08 14:58:54: 703: 170* 250504*
+2022-01-08 14:58:54:	937: 173 predicted (0)
+2022-01-08 14:58:54: 871: 178* 250504
+2022-01-08 14:58:54:	1161: 181 predicted (0)
+2022-01-08 14:58:54: 1161: 181* 250504
+2022-01-08 14:58:54:	2322: 182 predicted (0)
+2022-01-08 14:58:54: 1819: 181 1276936*
+2022-01-08 14:58:54: 2223: 182* 1276936
+2022-01-08 14:58:54:	4446: 183 predicted (0)
+2022-01-08 14:58:54: 2463: 208* 1276936
+2022-01-08 14:58:54:	4926: 209 predicted (0)
+2022-01-08 14:58:54: 2919: 216* 1276936
+2022-01-08 14:58:54:	5838: 217 predicted (0)
+2022-01-08 14:58:54: 3711: 237* 1276936
+2022-01-08 14:58:54:	7422: 238 predicted (0)
+2022-01-08 14:58:54: 4255: 237 6810136*
+2022-01-08 14:58:54: 4591: 237 8153620*
+2022-01-08 14:58:54: 6171: 261* 8153620
+2022-01-08 14:58:54:	12342: 262 predicted (0)
+2022-01-08 14:58:54: 9663: 261 27114424*
+2022-01-08 14:58:54: 10971: 267* 27114424
+2022-01-08 14:58:54:	21942: 268 predicted (0)
+2022-01-08 14:58:54: 13255: 275* 27114424
+2022-01-08 14:58:54:	17673: 278 predicted (0)
+2022-01-08 14:58:54: 17647: 278* 27114424
+2022-01-08 14:58:54:	23529: 281 predicted (0)
+2022-01-08 14:58:54: 20895: 278 50143264*
+2022-01-08 14:58:54: 23529: 281* 50143264
+2022-01-08 14:58:54:	47058: 282 predicted (0)
+2022-01-08 14:58:54: 26623: 307* 106358020*
+2022-01-08 14:58:54:	35497: 310 predicted (0)
+2022-01-08 14:58:54: 31911: 307 121012864*
+2022-01-08 14:58:54: 34239: 310* 121012864
+2022-01-08 14:58:54:	68478: 311 predicted (0)
+2022-01-08 14:58:54: 35655: 323* 121012864
+2022-01-08 14:58:54:	71310: 324 predicted (0)
+2022-01-08 14:58:54: 52527: 339* 121012864
+2022-01-08 14:58:54:	105054: 340 predicted (0)
+2022-01-08 14:58:54: 60975: 339 593279152*
+2022-01-08 14:58:54: 77031: 350* 593279152
+2022-01-08 14:58:54:	154062: 351 predicted (0)
+2022-01-08 14:58:54: 77671: 350 1570824736*
+2022-01-08 14:58:54: 106239: 353* 1570824736
+2022-01-08 14:58:54:	212478: 354 predicted (0)
+2022-01-08 14:58:54: 113383: 353 2482111348*
+2022-01-08 14:58:54: 138367: 353 2798323360*
+2022-01-08 14:58:54: 142587: 374* 2798323360
+2022-01-08 14:58:54:	285174: 375 predicted (0)
+2022-01-08 14:58:54: 156159: 382* 2798323360
+2022-01-08 14:58:54:	312318: 383 predicted (0)
+2022-01-08 14:58:54: 159487: 382 4 22508568*
+2022-01-08 14:58:54: 216367: 385* 4 22508568
+2022-01-08 14:58:54:	288489: 388 predicted (0)
+2022-01-08 14:58:54: 230631: 442* 4 22508568
+2022-01-08 14:58:54:	461262: 443 predicted (0)
+2022-01-08 14:58:54: 270271: 442 5 3173241416*
+2022-01-08 14:58:54: 410011: 448* 5 3173241416
+2022-01-08 14:58:54:	546681: 451 predicted (0)
+2022-01-08 14:58:54: 511935: 469* 5 3173241416
+2022-01-08 14:58:54:	1023870: 470 predicted (0)
+2022-01-08 14:58:54: 626331: 508* 5 3173241416
+2022-01-08 14:58:54:	1252662: 509 predicted (0)
+2022-01-08 14:58:54: 665215: 508 12 943677760*
+2022-01-08 14:58:54: 704511: 508 13 1156908672*
+2022-01-08 14:58:54: 837799: 524* 13 1156908672
+2022-01-08 14:58:54:	1117065: 527 predicted (0)
+2022-01-08 14:58:54: 1042431: 524 21 44842432*
+2022-01-08 14:58:54: 1117065: 527* 21 44842432
+2022-01-08 14:58:54:	2234130: 528 predicted (0)
+2022-01-08 14:58:54: 1212415: 527 32 2207783336*
+2022-01-08 14:58:54: 1441407: 527 35 1305719012*
+2022-01-08 14:58:54: 1501353: 530* 35 1305719012
+2022-01-08 14:58:54:	3002706: 531 predicted (0)
+2022-01-08 14:58:54: 1723519: 556* 35 1305719012
+2022-01-08 14:58:54:	2298025: 559 predicted (0)
+2022-01-08 14:58:54: 1875711: 556 36 1285527040*
+2022-01-08 14:58:54: 1988859: 556 36 2295555568*
+2022-01-08 14:58:54: 2298025: 559* 36 2295555568
+2022-01-08 14:58:54:	3064033: 562 predicted (0)
+2022-01-08 14:58:54: 2643183: 559 44 1481257460*
+2022-01-08 14:58:54: 2684647: 559 82 430494672*
+2022-01-08 14:58:54: 3041127: 559 144 4242610996*
+2022-01-08 14:58:54: 3064033: 562* 144 4242610996
+2022-01-08 14:58:54:	4085377: 565 predicted (0)
+2022-01-08 14:58:54: 3542887: 583* 144 4242610996
+2022-01-08 14:58:54:	4723849: 586 predicted (0)
+2022-01-08 14:58:54: 3732423: 596* 144 4242610996
+2022-01-08 14:58:54:	7464846: 597 predicted (0)
+2022-01-08 14:58:54: 3873535: 596 199 3856677672*
+2022-01-08 14:58:54: 4637979: 596 307 247335060*
+2022-01-08 14:58:54: 5649499: 612* 307 247335060
+2022-01-08 14:58:54:	7532665: 615 predicted (0)
+2022-01-08 14:58:54: 5656191: 612 561 3016963552*
+2022-01-08 14:58:54: 6416623: 612 1117 2518475736*
+2022-01-08 14:58:54: 6631675: 612 14049 2615378128*
+2022-01-08 14:58:54: 6649279: 664* 14049 2615378128
+2022-01-08 14:58:54:	8865705: 667 predicted (0)
+2022-01-08 14:58:54: 8400511: 685* 14049 2615378128
+2022-01-08 14:58:54:	11200681: 688 predicted (0)
+2022-01-08 14:58:54: 11200681: 688* 14049 2615378128
+2022-01-08 14:58:54:	14934241: 691 predicted (0)
+2022-01-08 14:58:54: 14934241: 691* 14049 2615378128
+2022-01-08 14:58:54:	19912321: 694 predicted (0)
+2022-01-08 14:58:54: 15733191: 704* 14049 2615378128
+2022-01-08 14:58:54:	31466382: 705 predicted (0)
+2022-01-08 14:58:54: 19638399: 704 71315 1332489512*
+2022-01-08 14:58:54: 31466382: 705* 71315 1332489512
+2022-01-08 14:58:54: 36791535: 744* 71315 1332489512
+2022-01-08 14:58:54:	73583070: 745 predicted (0)
+2022-01-08 14:58:54: 38595583: 744 110510 862970132*
+2022-01-08 14:58:54: 63728127: 949* 110510 862970132
+2022-01-08 14:58:54:	127456254: 950 predicted (0)
+2022-01-08 14:58:54: 80049391: 949 508768 1907918772*
+2022-01-08 14:58:55: 120080895: 949 763195 4010647860*
+2022-01-08 14:58:55: 127456254: 950* 763195 4010647860
+2022-01-08 14:58:55: 169941673: 953* 763195 4010647860
+2022-01-08 14:58:55:	226588897: 956 predicted (0)
+2022-01-08 14:58:55: 210964383: 953 1491233 195405296*
+2022-01-08 14:58:55: 226588897: 956* 1491233 195405296
+2022-01-08 14:58:55:	302118529: 959 predicted (0)
+2022-01-08 14:58:56: 268549803: 964* 1491233 195405296
+2022-01-08 14:58:56:	537099606: 965 predicted (0)
+2022-01-08 14:58:56: 319804831: 964 329277582 723984208*
+2022-01-08 14:58:57: 537099606: 965* 329277582 723984208
+2022-01-08 14:58:58: 670617279: 986* 329277582 723984208
+2022-01-08 14:58:58:	1341234558: 987 predicted (0)
+2022-01-08 14:59:03: 1341234558: 987* 329277582 723984208
+2022-01-08 14:59:04: 1410123943: 987 1659124419 3194451136*
+2022-01-08 14:59:04: 1412987847: 1000* 1659124419 3194451136
+2022-01-08 14:59:04:	2825975694: 1001 predicted (0)
+2022-01-08 14:59:06: 1674652263: 1008* 1659124419 3194451136
+2022-01-08 14:59:06:	3349304526: 1009 predicted (0)
+2022-01-08 14:59:13: 2610744987: 1050* 1659124419 3194451136
+2022-01-08 14:59:13:	5221489974: 1051 predicted (1)
+2022-01-08 14:59:26: Search complete, 32 seconds
+Saving checkpoint at block 1
+2022-01-08 15:00:02: Search of block: 1
+2022-01-08 15:00:04: 4578853915: 1087* 1659124419 3194451136
+2022-01-08 15:00:04:	6105138553: 1090 predicted (1)
+2022-01-08 15:00:05: 4890328815: 1131* 1659124419 3194451136
+2022-01-08 15:00:05:	9780657630: 1132 predicted (2)
+2022-01-08 15:00:25: 8528817511: 1131 4224617718 444447496*
+2022-01-08 15:00:25: Search complete, 23 seconds
+Saving checkpoint at block 2
+2022-01-08 15:00:44: Search of block: 2
+2022-01-08 15:00:51: 9780657630: 1132* 4224617718 444447496
+2022-01-08 15:01:06: 12212032815: 1153* 4224617718 444447496
+2022-01-08 15:01:06:	24424065630: 1154 predicted (5)
+2022-01-08 15:01:06: 12235060455: 1184* 4224617718 444447496
+2022-01-08 15:01:06:	24470120910: 1185 predicted (5)
+2022-01-08 15:01:06: 12327829503: 1184 1 529842181 1259187536*
+2022-01-08 15:01:09: Search complete, 25 seconds
+Saving checkpoint at block 3
+2022-01-08 15:02:11: Search of block: 3
+2022-01-08 15:02:14: 13371194527: 1210* 1 529842181 1259187536
+2022-01-08 15:02:14:	17828259369: 1213 predicted (4)
+2022-01-08 15:02:35: Search complete, 24 seconds
+Saving checkpoint at block 4
+2022-01-08 15:02:56: Search of block: 4
+2022-01-08 15:03:00: 17828259369: 1213* 1 529842181 1259187536
+2022-01-08 15:03:00:	35656518738: 1214 predicted (8)
+2022-01-08 15:03:21: Search complete, 25 seconds
+Saving checkpoint at block 5
+2022-01-08 15:03:29: Search of block: 5
+2022-01-08 15:03:39: 23035537407: 1213 3 3142730430 3425554912*
+2022-01-08 15:03:55: Search complete, 26 seconds
+Saving checkpoint at block 6
+2022-01-08 15:04:00: Search of block: 6
+2022-01-08 15:04:26: Search complete, 26 seconds
+Saving checkpoint at block 7
+2022-01-08 15:04:33: Search of block: 7
+2022-01-08 15:04:43: 31694683323: 1219* 3 3142730430 3425554912
+2022-01-08 15:04:43:	63389366646: 1220 predicted (14)
+2022-01-08 15:05:00: Search complete, 27 seconds
+Saving checkpoint at block 8
+2022-01-08 15:05:06: Search of block: 8
+2022-01-08 15:05:33: Search complete, 27 seconds
+Saving checkpoint at block 9
+2022-01-08 15:05:38: Search of block: 9
+2022-01-08 15:06:06: Search complete, 28 seconds
+Saving checkpoint at block 10
+2022-01-08 15:06:13: Search of block: 10
+2022-01-08 15:06:32: 45871962271: 1219 4 1991789929 1627465556*
+2022-01-08 15:06:41: Search complete, 28 seconds
+Saving checkpoint at block 11
+2022-01-08 15:07:23: Search of block: 11
+2022-01-08 15:07:51: Search complete, 28 seconds
+Saving checkpoint at block 12
+2022-01-08 15:10:37: Search of block: 12
+2022-01-08 15:10:38: 51739336447: 1219 6 921812071 1353658728*
+2022-01-08 15:11:05: Search complete, 28 seconds
+Saving checkpoint at block 13
+2022-01-08 15:11:07: Search of block: 13
+2022-01-08 15:11:29: 59152641055: 1219 8 913956312 2701016264*
+2022-01-08 15:11:31: 59436135663: 1219 11 657095704 2014688008*
+2022-01-08 15:11:36: Search complete, 29 seconds
+Saving checkpoint at block 14
+2022-01-08 15:11:38: Search of block: 14
+2022-01-08 15:11:59: 63389366646: 1220* 11 657095704 2014688008
+2022-01-08 15:12:06: Search complete, 28 seconds
+Saving checkpoint at block 15
+2022-01-08 15:12:29: Fast parallel search of blocks: 15-30
+peak found for 110243094271
+peak found for 85833820801
+peak found for 89798565535
+peak found for 75128138247
+peak found for 114445094401
+peak found for 123371171055
+peak found for 77566362559
+peak found for 70141259775
+peak found for 132764838399
+2022-01-08 15:12:40: Peak found, parallel search of blocks: 15-30, 11 seconds
+2022-01-08 15:13:09: Search complete, 29 seconds
+Saving checkpoint at block 16
+2022-01-08 15:13:25: Fast parallel search of blocks: 16-31
+peak found for 110243094271
+peak found for 85833820801
+peak found for 133561134663
+peak found for 75128138247
+peak found for 89798565535
+peak found for 114445094401
+peak found for 77566362559
+peak found for 132764838399
+peak found for 70141259775
+peak found for 123371171055
+2022-01-08 15:13:37: Peak found, parallel search of blocks: 16-31, 12 seconds
+2022-01-08 15:13:46: 70141259775: 1220 22 3524763548 1986767944*
+2022-01-08 15:14:06: Search complete, 29 seconds
+Saving checkpoint at block 17
+2022-01-08 15:14:10: Fast parallel search of blocks: 17-32
+peak found for 110243094271
+peak found for 85833820801
+peak found for 133561134663
+peak found for 75128138247
+peak found for 89798565535
+peak found for 114445094401
+peak found for 77566362559
+peak found for 123371171055
+peak found for 132764838399
+2022-01-08 15:14:22: Peak found, parallel search of blocks: 17-32, 12 seconds
+2022-01-08 15:14:36: 75128138247: 1228* 22 3524763548 1986767944
+2022-01-08 15:14:36:	150256276494: 1229 predicted (34)
+2022-01-08 15:14:51: Search complete, 29 seconds
+Saving checkpoint at block 18
+2022-01-08 15:14:54: Fast parallel search of blocks: 18-33
+peak found for 110243094271
+peak found for 133561134663
+peak found for 89798565535
+peak found for 77566362559
+peak found for 132764838399
+2022-01-08 15:15:07: Peak found, parallel search of blocks: 18-33, 13 seconds
+2022-01-08 15:15:09: 77566362559: 1228 49 2962204037 2105596720*
+2022-01-08 15:15:37: Search complete, 30 seconds
+Saving checkpoint at block 19
+2022-01-08 15:16:05: Search of block: 19
+2022-01-08 15:16:35: Search complete, 30 seconds
+Saving checkpoint at block 20
+2022-01-08 15:16:51: Search of block: 20
+2022-01-08 15:17:21: Search complete, 30 seconds
+Saving checkpoint at block 21
+2022-01-08 15:17:24: Search of block: 21
+2022-01-08 15:17:53: Search complete, 29 seconds
+Saving checkpoint at block 22
+2022-01-08 15:18:23: Search of block: 22
+2022-01-08 15:18:53: Search complete, 30 seconds
+Saving checkpoint at block 23
+2022-01-08 15:18:55: Search of block: 23
+2022-01-08 15:19:26: Search complete, 31 seconds
+Saving checkpoint at block 24
+2022-01-08 15:19:28: Search of block: 24
+2022-01-08 15:19:59: Search complete, 31 seconds
+Saving checkpoint at block 25
+2022-01-08 15:20:13: Search of block: 25
+2022-01-08 15:20:34: 110243094271: 1228 74 1721686709 2648691912*
+2022-01-08 15:20:44: Search complete, 31 seconds
+Saving checkpoint at block 26
+2022-01-08 15:20:46: Search of block: 26
+2022-01-08 15:21:17: Search complete, 31 seconds
+Saving checkpoint at block 27
+2022-01-08 15:21:26: Search of block: 27
+2022-01-08 15:21:57: Search complete, 31 seconds
+Saving checkpoint at block 28
+2022-01-08 15:22:01: Search of block: 28
+2022-01-08 15:22:31: Search complete, 30 seconds
+Saving checkpoint at block 29
+2022-01-08 15:22:35: Search of block: 29
+2022-01-08 15:23:05: Search complete, 30 seconds
+Saving checkpoint at block 30
+2022-01-08 15:23:08: Search of block: 30
+2022-01-08 15:23:39: Search complete, 31 seconds
+Saving checkpoint at block 31
+2022-01-08 15:23:42: Search of block: 31
+2022-01-08 15:23:45: 133561134663: 1234* 74 1721686709 2648691912
+2022-01-08 15:23:45:	267122269326: 1235 predicted (62)
+2022-01-08 15:24:13: Search complete, 31 seconds
+Saving checkpoint at block 32
+2022-01-08 15:24:15: Search of block: 32
+2022-01-08 15:24:45: Search complete, 30 seconds
+Saving checkpoint at block 33
+2022-01-08 15:24:50: Search of block: 33
+2022-01-08 15:25:21: Search complete, 31 seconds
+Saving checkpoint at block 34
+2022-01-08 15:25:25: Search of block: 34
+2022-01-08 15:25:56: Search complete, 31 seconds
+Saving checkpoint at block 35
+2022-01-08 15:25:58: Fast parallel search of blocks: 35-50
+peak found for 202485402111
+peak found for 158294678119
+peak found for 166763117679
+peak found for 214342527079
+2022-01-08 15:26:11: Peak found, parallel search of blocks: 35-50, 13 seconds
+2022-01-08 15:26:42: Search complete, 31 seconds
+Saving checkpoint at block 36
+2022-01-08 15:27:03: Fast parallel search of blocks: 36-51
+peak found for 202485402111
+peak found for 158294678119
+peak found for 166763117679
+peak found for 222350823583
+peak found for 214342527079
+2022-01-08 15:27:16: Peak found, parallel search of blocks: 36-51, 13 seconds
+2022-01-08 15:27:43: 158294678119: 1242* 74 1721686709 2648691912
+2022-01-08 15:27:43:	211059570825: 1245 predicted (49)
+2022-01-08 15:27:47: Search complete, 31 seconds
+Saving checkpoint at block 37
+2022-01-08 15:27:55: Search of block: 37
+2022-01-08 15:28:24: Search complete, 29 seconds
+Saving checkpoint at block 38
+2022-01-08 15:28:56: Fast parallel search of blocks: 38-45
+peak found for 166763117679
+2022-01-08 15:29:06: Peak found, parallel search of blocks: 38-45, 10 seconds
+2022-01-08 15:29:30: 166763117679: 1255* 74 1721686709 2648691912
+2022-01-08 15:29:30:	333526235358: 1256 predicted (77)
+2022-01-08 15:29:34: Search complete, 28 seconds
+Saving checkpoint at block 39
+2022-01-08 15:29:50: Search of block: 39
+2022-01-08 15:30:14: Search complete, 24 seconds
+Saving checkpoint at block 40
+2022-01-08 15:30:24: Fast parallel search of blocks: 40-47
+peak found for 202485402111
+2022-01-08 15:30:32: Peak found, parallel search of blocks: 40-47, 8 seconds
+2022-01-08 15:30:55: Search complete, 23 seconds
+Saving checkpoint at block 41
+2022-01-08 15:31:11: Fast parallel search of blocks: 41-44
+2022-01-08 15:31:19: Search complete, 8 seconds
+Saving checkpoint at block 45
+2022-01-08 15:31:31: Fast parallel search of blocks: 45-48
+peak found for 202485402111
+2022-01-08 15:31:39: Peak found, parallel search of blocks: 45-48, 8 seconds
+2022-01-08 15:32:07: Search complete, 28 seconds
+Saving checkpoint at block 46
+2022-01-08 15:32:21: Search of block: 46
+2022-01-08 15:32:50: Search complete, 29 seconds
+Saving checkpoint at block 47
+2022-01-08 15:33:04: Search of block: 47
+2022-01-08 15:33:09: 202485402111: 1307* 74 1721686709 2648691912
+2022-01-08 15:33:09:	404970804222: 1308 predicted (94)
+2022-01-08 15:33:20: 204430613247: 1307 76 3098566878 2250246384*
+2022-01-08 15:33:29: Search complete, 25 seconds
+Saving checkpoint at block 48
+2022-01-08 15:33:39: Search of block: 48
+2022-01-08 15:34:03: Search complete, 24 seconds
+Saving checkpoint at block 49
+2022-01-08 15:34:11: Search of block: 49
+2022-01-08 15:34:35: Search complete, 24 seconds
+Saving checkpoint at block 50
+2022-01-08 15:34:42: Fast parallel search of blocks: 50-61
+peak found for 231913730799
+2022-01-08 15:34:49: Peak found, parallel search of blocks: 50-61, 7 seconds
+2022-01-08 15:35:13: Search complete, 24 seconds
+Saving checkpoint at block 51
+2022-01-08 15:35:28: Fast parallel search of blocks: 51-58
+peak found for 231913730799
+2022-01-08 15:35:33: Peak found, parallel search of blocks: 51-58, 5 seconds
+2022-01-08 15:35:57: Search complete, 24 seconds
+Saving checkpoint at block 52
+2022-01-08 15:36:07: Fast parallel search of blocks: 52-59
+peak found for 231913730799
+2022-01-08 15:36:13: Peak found, parallel search of blocks: 52-59, 6 seconds
+2022-01-08 15:36:37: Search complete, 24 seconds
+Saving checkpoint at block 53
+2022-01-08 15:36:48: Fast parallel search of blocks: 53-60
+peak found for 231913730799
+2022-01-08 15:36:53: Peak found, parallel search of blocks: 53-60, 5 seconds
+2022-01-08 15:37:17: 231913730799: 1307 118 3173021409 3984582804*
+2022-01-08 15:37:17: Search complete, 24 seconds
+Saving checkpoint at block 54
+2022-01-08 15:37:38: Fast parallel search of blocks: 54-61
+2022-01-08 15:37:44: Search complete, 6 seconds
+Saving checkpoint at block 62
+2022-01-08 15:37:59: Search of block: 62
+2022-01-08 15:38:24: Search complete, 25 seconds
+Saving checkpoint at block 63
+2022-01-08 15:38:36: Fast parallel search of blocks: 63-74
+peak found for 272025660543
+2022-01-08 15:38:43: Peak found, parallel search of blocks: 63-74, 7 seconds
+2022-01-08 15:38:52: 272025660543: 1307 1189 3563457175 2439543524*
+2022-01-08 15:39:09: Search complete, 26 seconds
+Saving checkpoint at block 64
+2022-01-08 15:39:21: Fast parallel search of blocks: 64-75
+2022-01-08 15:39:29: Search complete, 8 seconds
+Saving checkpoint at block 76
+2022-01-08 15:39:39: Search of block: 76
+2022-01-08 15:40:06: Search complete, 27 seconds
+Saving checkpoint at block 77
+2022-01-08 15:40:16: Search of block: 77
+2022-01-08 15:40:43: Search complete, 27 seconds
+Saving checkpoint at block 78
+2022-01-08 15:40:52: Fast parallel search of blocks: 78-93
+2022-01-08 15:41:01: Search complete, 9 seconds
+Saving checkpoint at block 94
+2022-01-08 15:41:10: Search of block: 94
+2022-01-08 15:41:18: 404970804222: 1308* 1189 3563457175 2439543524
+2022-01-08 15:41:37: Search complete, 27 seconds
+Saving checkpoint at block 95
+2022-01-08 15:41:43: Fast parallel search of blocks: 95-110
+peak found for 426635908975
+peak found for 446559217279
+2022-01-08 15:41:53: Peak found, parallel search of blocks: 95-110, 10 seconds
+2022-01-08 15:42:21: Search complete, 28 seconds
+Saving checkpoint at block 96
+2022-01-08 15:42:37: Fast parallel search of blocks: 96-103
+peak found for 426635908975
+peak found for 446559217279
+2022-01-08 15:42:43: Peak found, parallel search of blocks: 96-103, 6 seconds
+2022-01-08 15:43:11: Search complete, 28 seconds
+Saving checkpoint at block 97
+2022-01-08 15:43:22: Fast parallel search of blocks: 97-104
+peak found for 426635908975
+peak found for 446559217279
+2022-01-08 15:43:28: Peak found, parallel search of blocks: 97-104, 6 seconds
+2022-01-08 15:43:56: Search complete, 28 seconds
+Saving checkpoint at block 98
+2022-01-08 15:44:02: Fast parallel search of blocks: 98-105
+peak found for 426635908975
+peak found for 446559217279
+2022-01-08 15:44:08: Peak found, parallel search of blocks: 98-105, 6 seconds
+2022-01-08 15:44:35: Search complete, 27 seconds
+Saving checkpoint at block 99
+2022-01-08 15:44:40: Fast parallel search of blocks: 99-106
+peak found for 426635908975
+peak found for 446559217279
+2022-01-08 15:44:47: Peak found, parallel search of blocks: 99-106, 7 seconds
+2022-01-08 15:44:56: 426635908975: 1321* 1189 3563457175 2439543524
+2022-01-08 15:44:56:	568847878633: 1324 predicted (132)
+2022-01-08 15:45:14: Search complete, 27 seconds
+Saving checkpoint at block 100
+2022-01-08 15:45:23: Fast parallel search of blocks: 100-115
+peak found for 446559217279
+2022-01-08 15:45:33: Peak found, parallel search of blocks: 100-115, 10 seconds
+2022-01-08 15:46:00: Search complete, 27 seconds
+Saving checkpoint at block 101
+2022-01-08 15:46:10: Fast parallel search of blocks: 101-108
+peak found for 446559217279
+2022-01-08 15:46:16: Peak found, parallel search of blocks: 101-108, 6 seconds
+2022-01-08 15:46:43: Search complete, 27 seconds
+Saving checkpoint at block 102
+2022-01-08 15:46:50: Fast parallel search of blocks: 102-109
+peak found for 446559217279
+2022-01-08 15:46:57: Peak found, parallel search of blocks: 102-109, 7 seconds
+2022-01-08 15:47:24: Search complete, 27 seconds
+Saving checkpoint at block 103
+2022-01-08 15:47:29: Fast parallel search of blocks: 103-110
+peak found for 446559217279
+2022-01-08 15:47:36: Peak found, parallel search of blocks: 103-110, 7 seconds
+2022-01-08 15:48:02: 446559217279: 1321 2143 443393555 509090704*
+2022-01-08 15:48:03: Search complete, 27 seconds
+Saving checkpoint at block 104
+2022-01-08 15:48:21: Fast parallel search of blocks: 104-119
+2022-01-08 15:48:31: Search complete, 10 seconds
+Saving checkpoint at block 120
+2022-01-08 15:48:40: Fast parallel search of blocks: 120-131
+2022-01-08 15:48:50: Search complete, 10 seconds
+Saving checkpoint at block 132
+2022-01-08 15:48:55: Search of block: 132
+2022-01-08 15:49:01: 567839862631: 1321 5450 1261481984 3156733524*
+2022-01-08 15:49:08: 568847878633: 1324* 5450 1261481984 3156733524
+2022-01-08 15:49:08:	758463838177: 1327 predicted (176)
+2022-01-08 15:49:23: Search complete, 28 seconds
+Saving checkpoint at block 133
+2022-01-08 15:49:27: Fast parallel search of blocks: 133-148
+2022-01-08 15:49:37: Search complete, 10 seconds
+Saving checkpoint at block 149
+2022-01-08 15:49:40: Fast parallel search of blocks: 149-164
+peak found for 674190078379
+2022-01-08 15:49:51: Peak found, parallel search of blocks: 149-164, 11 seconds
+2022-01-08 15:50:19: Search complete, 28 seconds
+Saving checkpoint at block 150
+2022-01-08 15:50:27: Fast parallel search of blocks: 150-157
+peak found for 674190078379
+2022-01-08 15:50:34: Peak found, parallel search of blocks: 150-157, 7 seconds
+2022-01-08 15:51:02: Search complete, 28 seconds
+Saving checkpoint at block 151
+2022-01-08 15:51:12: Fast parallel search of blocks: 151-154
+2022-01-08 15:51:20: Search complete, 8 seconds
+Saving checkpoint at block 155
+2022-01-08 15:51:25: Fast parallel search of blocks: 155-158
+peak found for 674190078379
+2022-01-08 15:51:33: Peak found, parallel search of blocks: 155-158, 8 seconds
+2022-01-08 15:52:00: Search complete, 27 seconds
+Saving checkpoint at block 156
+2022-01-08 15:52:05: Fast parallel search of blocks: 156-159
+peak found for 674190078379
+2022-01-08 15:52:13: Peak found, parallel search of blocks: 156-159, 8 seconds
+2022-01-08 15:52:40: 674190078379: 1332* 5450 1261481984 3156733524
+2022-01-08 15:52:40:	898920104505: 1335 predicted (209)
+2022-01-08 15:52:40: Search complete, 27 seconds
+Saving checkpoint at block 157
+2022-01-08 15:52:48: Fast parallel search of blocks: 157-172
+2022-01-08 15:52:59: Search complete, 11 seconds
+Saving checkpoint at block 173
+2022-01-08 15:53:05: Search of block: 173
+2022-01-08 15:53:33: Search complete, 28 seconds
+Saving checkpoint at block 174
+2022-01-08 15:53:42: Search of block: 174
+2022-01-08 15:54:10: Search complete, 28 seconds
+Saving checkpoint at block 175
+2022-01-08 15:54:14: Search of block: 175
+2022-01-08 15:54:42: Search complete, 28 seconds
+Saving checkpoint at block 176
+2022-01-08 15:54:44: Search of block: 176
+2022-01-08 15:55:12: Search complete, 28 seconds
+Saving checkpoint at block 177
+2022-01-08 15:55:15: Fast parallel search of blocks: 177-192
+2022-01-08 15:55:26: Search complete, 11 seconds
+Saving checkpoint at block 193
+2022-01-08 15:55:32: Fast parallel search of blocks: 193-208
+peak found for 871673828443
+peak found for 881715740415
+2022-01-08 15:55:42: Peak found, parallel search of blocks: 193-208, 10 seconds
+2022-01-08 15:56:10: Search complete, 28 seconds
+Saving checkpoint at block 194
+2022-01-08 15:56:28: Fast parallel search of blocks: 194-201
+2022-01-08 15:56:36: Search complete, 8 seconds
+Saving checkpoint at block 202
+2022-01-08 15:56:44: Fast parallel search of blocks: 202-205
+peak found for 871673828443
+peak found for 881715740415
+2022-01-08 15:56:52: Peak found, parallel search of blocks: 202-205, 8 seconds
+2022-01-08 15:57:18: 871673828443: 1332 21714 1429581251 898476608*
+2022-01-08 15:57:20: Search complete, 28 seconds
+Saving checkpoint at block 203
+2022-01-08 15:57:27: Fast parallel search of blocks: 203-206
+peak found for 881715740415
+2022-01-08 15:57:34: Peak found, parallel search of blocks: 203-206, 7 seconds
+2022-01-08 15:58:02: Search complete, 28 seconds
+Saving checkpoint at block 204
+2022-01-08 15:58:12: Fast parallel search of blocks: 204-207
+peak found for 881715740415
+2022-01-08 15:58:19: Peak found, parallel search of blocks: 204-207, 7 seconds
+2022-01-08 15:58:47: Search complete, 28 seconds
+Saving checkpoint at block 205
+2022-01-08 15:58:51: Fast parallel search of blocks: 205-208
+peak found for 881715740415
+2022-01-08 15:58:58: Peak found, parallel search of blocks: 205-208, 7 seconds
+2022-01-08 15:59:06: 881715740415: 1335* 21714 1429581251 898476608
+2022-01-08 15:59:06:	1763431480830: 1336 predicted (410)
+2022-01-08 15:59:26: Search complete, 28 seconds
+Saving checkpoint at block 206
+2022-01-08 15:59:32: Search of block: 206
+2022-01-08 16:00:00: Search complete, 28 seconds
+Saving checkpoint at block 207
+2022-01-08 16:00:04: Search of block: 207
+2022-01-08 16:00:32: Search complete, 28 seconds
+Saving checkpoint at block 208
+2022-01-08 16:00:36: Search of block: 208
+2022-01-08 16:01:04: Search complete, 28 seconds
+Saving checkpoint at block 209
+2022-01-08 16:01:08: Search of block: 209
+2022-01-08 16:01:35: Search complete, 27 seconds
+Saving checkpoint at block 210
+2022-01-08 16:01:39: Fast parallel search of blocks: 210-225
+2022-01-08 16:01:50: Search complete, 11 seconds
+Saving checkpoint at block 226
+2022-01-08 16:01:53: Fast parallel search of blocks: 226-241
+peak found for 989345275647
+2022-01-08 16:02:04: Peak found, parallel search of blocks: 226-241, 11 seconds
+2022-01-08 16:02:32: Search complete, 28 seconds
+Saving checkpoint at block 227
+2022-01-08 16:02:41: Fast parallel search of blocks: 227-234
+peak found for 989345275647
+2022-01-08 16:02:49: Peak found, parallel search of blocks: 227-234, 8 seconds
+2022-01-08 16:03:17: Search complete, 28 seconds
+Saving checkpoint at block 228
+2022-01-08 16:03:32: Fast parallel search of blocks: 228-235
+peak found for 989345275647
+2022-01-08 16:03:40: Peak found, parallel search of blocks: 228-235, 8 seconds
+2022-01-08 16:04:08: Search complete, 28 seconds
+Saving checkpoint at block 229
+2022-01-08 16:04:15: Fast parallel search of blocks: 229-236
+peak found for 989345275647
+2022-01-08 16:04:23: Peak found, parallel search of blocks: 229-236, 8 seconds
+2022-01-08 16:04:50: Search complete, 27 seconds
+Saving checkpoint at block 230
+2022-01-08 16:04:54: Fast parallel search of blocks: 230-237
+peak found for 989345275647
+2022-01-08 16:05:02: Peak found, parallel search of blocks: 230-237, 8 seconds
+2022-01-08 16:05:12: 989345275647: 1348* 21714 1429581251 898476608
+2022-01-08 16:05:12:	1978690551294: 1349 predicted (460)
+2022-01-08 16:05:30: Search complete, 28 seconds
+Saving checkpoint at block 231
+2022-01-08 16:05:40: Fast parallel search of blocks: 231-246
+2022-01-08 16:05:49: Search complete, 9 seconds
+Saving checkpoint at block 247
+2022-01-08 16:05:54: Fast parallel search of blocks: 247-262
+peak found for 1122382791663
+2022-01-08 16:06:03: Peak found, parallel search of blocks: 247-262, 9 seconds
+2022-01-08 16:06:31: Search complete, 28 seconds
+Saving checkpoint at block 248
+2022-01-08 16:06:37: Fast parallel search of blocks: 248-251
+2022-01-08 16:06:43: Search complete, 6 seconds
+Saving checkpoint at block 252
+2022-01-08 16:06:47: Fast parallel search of blocks: 252-255
+2022-01-08 16:06:54: Search complete, 7 seconds
+Saving checkpoint at block 256
+2022-01-08 16:07:01: Fast parallel search of blocks: 256-259
+2022-01-08 16:07:07: Search complete, 6 seconds
+Saving checkpoint at block 260
+2022-01-08 16:07:11: Fast parallel search of blocks: 260-263
+peak found for 1122382791663
+2022-01-08 16:07:17: Peak found, parallel search of blocks: 260-263, 6 seconds
+2022-01-08 16:07:45: Search complete, 28 seconds
+Saving checkpoint at block 261
+2022-01-08 16:07:53: Fast parallel search of blocks: 261-276
+peak found for 1122382791663
+2022-01-08 16:08:02: Peak found, parallel search of blocks: 261-276, 9 seconds
+2022-01-08 16:08:12: 1122382791663: 1356* 21714 1429581251 898476608
+2022-01-08 16:08:12:	2244765583326: 1357 predicted (522)
+2022-01-08 16:08:30: Search complete, 28 seconds
+Saving checkpoint at block 262
+2022-01-08 16:08:32: Fast parallel search of blocks: 262-277
+2022-01-08 16:08:41: Search complete, 9 seconds
+Saving checkpoint at block 278
+2022-01-08 16:08:44: Fast parallel search of blocks: 278-293
+2022-01-08 16:08:53: Search complete, 9 seconds
+Saving checkpoint at block 294
+2022-01-08 16:08:56: Fast parallel search of blocks: 294-309
+2022-01-08 16:09:05: Search complete, 9 seconds
+Saving checkpoint at block 310
+2022-01-08 16:09:08: Fast parallel search of blocks: 310-325
+2022-01-08 16:09:17: Search complete, 9 seconds
+Saving checkpoint at block 326
+2022-01-08 16:09:19: Fast parallel search of blocks: 326-341
+peak found for 1444338092271
+2022-01-08 16:09:28: Peak found, parallel search of blocks: 326-341, 9 seconds
+2022-01-08 16:09:56: Search complete, 28 seconds
+Saving checkpoint at block 327
+2022-01-08 16:10:05: Fast parallel search of blocks: 327-330
+2022-01-08 16:10:12: Search complete, 7 seconds
+Saving checkpoint at block 331
+2022-01-08 16:10:14: Fast parallel search of blocks: 331-334
+2022-01-08 16:10:21: Search complete, 7 seconds
+Saving checkpoint at block 335
+2022-01-08 16:10:23: Fast parallel search of blocks: 335-338
+peak found for 1444338092271
+2022-01-08 16:10:30: Peak found, parallel search of blocks: 335-338, 7 seconds
+2022-01-08 16:10:58: Search complete, 28 seconds
+Saving checkpoint at block 336
+2022-01-08 16:11:01: Fast parallel search of blocks: 336-339
+peak found for 1444338092271
+2022-01-08 16:11:08: Peak found, parallel search of blocks: 336-339, 7 seconds
+2022-01-08 16:11:16: 1444338092271: 1408* 21714 1429581251 898476608
+2022-01-08 16:11:16:	2888676184542: 1409 predicted (672)
+2022-01-08 16:11:32: Search complete, 24 seconds
+Saving checkpoint at block 337
+2022-01-08 16:11:37: Fast parallel search of blocks: 337-352
+2022-01-08 16:11:44: Search complete, 7 seconds
+Saving checkpoint at block 353
+2022-01-08 16:11:47: Fast parallel search of blocks: 353-368
+2022-01-08 16:11:54: Search complete, 7 seconds
+Saving checkpoint at block 369
+2022-01-08 16:11:56: Fast parallel search of blocks: 369-384
+2022-01-08 16:12:04: Search complete, 8 seconds
+Saving checkpoint at block 385
+2022-01-08 16:12:06: Fast parallel search of blocks: 385-400
+2022-01-08 16:12:13: Search complete, 7 seconds
+Saving checkpoint at block 401
+2022-01-08 16:12:20: Fast parallel search of blocks: 401-408
+2022-01-08 16:12:25: Search complete, 5 seconds
+Saving checkpoint at block 409
+2022-01-08 16:12:32: Search of block: 409
+2022-01-08 16:12:56: Search complete, 24 seconds
+Saving checkpoint at block 410
+2022-01-08 16:12:59: Search of block: 410
+2022-01-08 16:13:23: Search complete, 24 seconds
+Saving checkpoint at block 411
+2022-01-08 16:13:25: Fast parallel search of blocks: 411-426
+2022-01-08 16:13:32: Search complete, 7 seconds
+Saving checkpoint at block 427
+2022-01-08 16:13:34: Fast parallel search of blocks: 427-442
+peak found for 1899148184679
+2022-01-08 16:13:41: Peak found, parallel search of blocks: 427-442, 7 seconds
+2022-01-08 16:14:06: Search complete, 25 seconds
+Saving checkpoint at block 428
+2022-01-08 16:14:12: Fast parallel search of blocks: 428-431
+2022-01-08 16:14:18: Search complete, 6 seconds
+Saving checkpoint at block 432
+2022-01-08 16:14:20: Fast parallel search of blocks: 432-435
+2022-01-08 16:14:25: Search complete, 5 seconds
+Saving checkpoint at block 436
+2022-01-08 16:14:27: Fast parallel search of blocks: 436-439
+2022-01-08 16:14:32: Search complete, 5 seconds
+Saving checkpoint at block 440
+2022-01-08 16:14:36: Fast parallel search of blocks: 440-443
+peak found for 1899148184679
+2022-01-08 16:14:41: Peak found, parallel search of blocks: 440-443, 5 seconds
+2022-01-08 16:15:06: Search complete, 25 seconds
+Saving checkpoint at block 441
+2022-01-08 16:15:12: Fast parallel search of blocks: 441-444
+peak found for 1899148184679
+2022-01-08 16:15:17: Peak found, parallel search of blocks: 441-444, 5 seconds
+2022-01-08 16:15:41: Search complete, 24 seconds
+Saving checkpoint at block 442
+2022-01-08 16:15:44: Fast parallel search of blocks: 442-445
+peak found for 1899148184679
+2022-01-08 16:15:49: Peak found, parallel search of blocks: 442-445, 5 seconds
+2022-01-08 16:15:54: 1899148184679: 1411* 21714 1429581251 898476608
+2022-01-08 16:15:54:	3798296369358: 1412 predicted (884)
+2022-01-08 16:16:14: Search complete, 25 seconds
+Saving checkpoint at block 443
+2022-01-08 16:16:18: Fast parallel search of blocks: 443-458
+2022-01-08 16:16:25: Search complete, 7 seconds
+Saving checkpoint at block 459
+2022-01-08 16:16:32: Search of block: 459
+2022-01-08 16:16:57: Search complete, 25 seconds
+Saving checkpoint at block 460
+2022-01-08 16:16:58: Search of block: 460
+2022-01-08 16:17:23: Search complete, 25 seconds
+Saving checkpoint at block 461
+2022-01-08 16:17:30: Fast parallel search of blocks: 461-476
+2022-01-08 16:17:37: Search complete, 7 seconds
+Saving checkpoint at block 477
+2022-01-08 16:17:42: Fast parallel search of blocks: 477-492
+peak found for 2081751768559
+2022-01-08 16:17:49: Peak found, parallel search of blocks: 477-492, 7 seconds
+2022-01-08 16:18:14: Search complete, 25 seconds
+Saving checkpoint at block 478
+2022-01-08 16:18:21: Fast parallel search of blocks: 478-481
+2022-01-08 16:18:26: Search complete, 5 seconds
+Saving checkpoint at block 482
+2022-01-08 16:18:29: Fast parallel search of blocks: 482-485
+peak found for 2081751768559
+2022-01-08 16:18:35: Peak found, parallel search of blocks: 482-485, 6 seconds
+2022-01-08 16:18:59: Search complete, 24 seconds
+Saving checkpoint at block 483
+2022-01-08 16:19:04: Fast parallel search of blocks: 483-486
+peak found for 2081751768559
+2022-01-08 16:19:09: Peak found, parallel search of blocks: 483-486, 5 seconds
+2022-01-08 16:19:33: Search complete, 24 seconds
+Saving checkpoint at block 484
+2022-01-08 16:19:40: Fast parallel search of blocks: 484-499
+peak found for 2081751768559
+2022-01-08 16:19:47: Peak found, parallel search of blocks: 484-499, 7 seconds
+2022-01-08 16:20:04: 2081751768559: 1437* 21714 1429581251 898476608
+2022-01-08 16:20:04:	2775669024745: 1440 predicted (646)
+2022-01-08 16:20:12: Search complete, 25 seconds
+Saving checkpoint at block 485
+2022-01-08 16:20:16: Fast parallel search of blocks: 485-500
+2022-01-08 16:20:23: Search complete, 7 seconds
+Saving checkpoint at block 501
+2022-01-08 16:20:31: Fast parallel search of blocks: 501-516
+2022-01-08 16:20:38: Search complete, 7 seconds
+Saving checkpoint at block 517
+2022-01-08 16:20:44: Fast parallel search of blocks: 517-521
+2022-01-08 16:20:49: Search complete, 5 seconds
+Saving checkpoint at block 522
+2022-01-08 16:20:54: Search of block: 522
+2022-01-08 16:21:21: Search complete, 27 seconds
+Saving checkpoint at block 523
+2022-01-08 16:21:28: Fast parallel search of blocks: 523-538
+2022-01-08 16:21:35: Search complete, 7 seconds
+Saving checkpoint at block 539
+2022-01-08 16:21:37: Fast parallel search of blocks: 539-554
+2022-01-08 16:21:44: Search complete, 7 seconds
+Saving checkpoint at block 555
+2022-01-08 16:21:46: Fast parallel search of blocks: 555-570
+2022-01-08 16:21:53: Search complete, 7 seconds
+Saving checkpoint at block 571
+2022-01-08 16:21:55: Fast parallel search of blocks: 571-586
+2022-01-08 16:22:02: Search complete, 7 seconds
+Saving checkpoint at block 587
+2022-01-08 16:22:03: Fast parallel search of blocks: 587-602
+2022-01-08 16:22:11: Search complete, 8 seconds
+Saving checkpoint at block 603
+2022-01-08 16:22:13: Fast parallel search of blocks: 603-618
+2022-01-08 16:22:21: Search complete, 8 seconds
+Saving checkpoint at block 619
+2022-01-08 16:22:24: Fast parallel search of blocks: 619-634
+peak found for 2674309547647
+2022-01-08 16:22:32: Peak found, parallel search of blocks: 619-634, 8 seconds
+2022-01-08 16:22:58: Search complete, 26 seconds
+Saving checkpoint at block 620
+2022-01-08 16:23:09: Fast parallel search of blocks: 620-623
+peak found for 2674309547647
+2022-01-08 16:23:14: Peak found, parallel search of blocks: 620-623, 5 seconds
+2022-01-08 16:23:41: Search complete, 27 seconds
+Saving checkpoint at block 621
+2022-01-08 16:23:47: Fast parallel search of blocks: 621-624
+peak found for 2674309547647
+2022-01-08 16:23:51: Peak found, parallel search of blocks: 621-624, 4 seconds
+2022-01-08 16:24:18: Search complete, 27 seconds
+Saving checkpoint at block 622
+2022-01-08 16:24:23: Fast parallel search of blocks: 622-625
+peak found for 2674309547647
+2022-01-08 16:24:28: Peak found, parallel search of blocks: 622-625, 5 seconds
+2022-01-08 16:24:46: 2674309547647: 1437 41764 2358657153 2047893360*
+2022-01-08 16:24:55: Search complete, 27 seconds
+Saving checkpoint at block 623
+2022-01-08 16:25:01: Fast parallel search of blocks: 623-638
+2022-01-08 16:25:08: Search complete, 7 seconds
+Saving checkpoint at block 639
+2022-01-08 16:25:21: Fast parallel search of blocks: 639-642
+2022-01-08 16:25:26: Search complete, 5 seconds
+Saving checkpoint at block 643
+2022-01-08 16:25:32: Search of block: 643
+2022-01-08 16:25:58: Search complete, 26 seconds
+Saving checkpoint at block 644
+2022-01-08 16:26:06: Search of block: 644
+2022-01-08 16:26:33: Search complete, 27 seconds
+Saving checkpoint at block 645
+2022-01-08 16:26:35: Search of block: 645
+2022-01-08 16:27:01: Search complete, 26 seconds
+Saving checkpoint at block 646
+2022-01-08 16:27:05: Search of block: 646
+2022-01-08 16:27:12: 2775669024745: 1440* 41764 2358657153 2047893360
+2022-01-08 16:27:12:	3700892032993: 1443 predicted (861)
+2022-01-08 16:27:32: Search complete, 27 seconds
+Saving checkpoint at block 647
+2022-01-08 16:27:34: Fast parallel search of blocks: 647-662
+2022-01-08 16:27:41: Search complete, 7 seconds
+Saving checkpoint at block 663
+2022-01-08 16:27:47: Fast parallel search of blocks: 663-670
+2022-01-08 16:27:52: Search complete, 5 seconds
+Saving checkpoint at block 671
+2022-01-08 16:27:57: Search of block: 671
+2022-01-08 16:28:24: Search complete, 27 seconds
+Saving checkpoint at block 672
+2022-01-08 16:28:29: Search of block: 672
+2022-01-08 16:28:56: Search complete, 27 seconds
+Saving checkpoint at block 673
+2022-01-08 16:29:00: Fast parallel search of blocks: 673-688
+2022-01-08 16:29:07: Search complete, 7 seconds
+Saving checkpoint at block 689
+2022-01-08 16:29:08: Fast parallel search of blocks: 689-704
+2022-01-08 16:29:16: Search complete, 8 seconds
+Saving checkpoint at block 705
+2022-01-08 16:29:19: Fast parallel search of blocks: 705-720
+2022-01-08 16:29:26: Search complete, 7 seconds
+Saving checkpoint at block 721
+2022-01-08 16:29:29: Fast parallel search of blocks: 721-736
+2022-01-08 16:29:36: Search complete, 7 seconds
+Saving checkpoint at block 737
+2022-01-08 16:29:39: Fast parallel search of blocks: 737-752
+2022-01-08 16:29:46: Search complete, 7 seconds
+Saving checkpoint at block 753
+2022-01-08 16:29:48: Fast parallel search of blocks: 753-768
+2022-01-08 16:29:56: Search complete, 8 seconds
+Saving checkpoint at block 769
+2022-01-08 16:29:58: Fast parallel search of blocks: 769-784
+2022-01-08 16:30:05: Search complete, 7 seconds
+Saving checkpoint at block 785
+2022-01-08 16:30:07: Fast parallel search of blocks: 785-800
+2022-01-08 16:30:15: Search complete, 8 seconds
+Saving checkpoint at block 801
+2022-01-08 16:30:16: Fast parallel search of blocks: 801-816
+2022-01-08 16:30:24: Search complete, 8 seconds
+Saving checkpoint at block 817
+2022-01-08 16:30:27: Fast parallel search of blocks: 817-832
+2022-01-08 16:30:34: Search complete, 7 seconds
+Saving checkpoint at block 833
+2022-01-08 16:30:37: Fast parallel search of blocks: 833-848
+2022-01-08 16:30:45: Search complete, 8 seconds
+Saving checkpoint at block 849
+2022-01-08 16:30:49: Fast search of block: 849
+2022-01-08 16:30:55: Search complete, 6 seconds
+Saving checkpoint at block 850
+2022-01-08 16:31:02: Fast parallel search of blocks: 850-859
+2022-01-08 16:31:10: Search complete, 8 seconds
+Saving checkpoint at block 860
+2022-01-08 16:31:15: Search of block: 860
+2022-01-08 16:31:43: Search complete, 28 seconds
+Saving checkpoint at block 861
+2022-01-08 16:31:45: Search of block: 861
+2022-01-08 16:32:04: 3700892032993: 1443* 41764 2358657153 2047893360
+2022-01-08 16:32:04:	4934522710657: 1446 predicted (1148)
+2022-01-08 16:32:12: Search complete, 27 seconds
+Saving checkpoint at block 862
+2022-01-08 16:32:14: Fast parallel search of blocks: 862-877
+peak found for 3743559068799
+peak found for 3716509988199
+2022-01-08 16:32:23: Peak found, parallel search of blocks: 862-877, 9 seconds
+2022-01-08 16:32:51: Search complete, 28 seconds
+Saving checkpoint at block 863
+2022-01-08 16:32:57: Fast parallel search of blocks: 863-866
+peak found for 3716509988199
+2022-01-08 16:33:03: Peak found, parallel search of blocks: 863-866, 6 seconds
+2022-01-08 16:33:31: Search complete, 28 seconds
+Saving checkpoint at block 864
+2022-01-08 16:33:34: Fast parallel search of blocks: 864-867
+peak found for 3716509988199
+2022-01-08 16:33:40: Peak found, parallel search of blocks: 864-867, 6 seconds
+2022-01-08 16:34:08: Search complete, 28 seconds
+Saving checkpoint at block 865
+2022-01-08 16:34:11: Fast parallel search of blocks: 865-868
+peak found for 3716509988199
+2022-01-08 16:34:17: Peak found, parallel search of blocks: 865-868, 6 seconds
+2022-01-08 16:34:26: 3716509988199: 1443 11272258 1137546465 1309597896*
+2022-01-08 16:34:45: Search complete, 28 seconds
+Saving checkpoint at block 866
+2022-01-08 16:34:50: Fast parallel search of blocks: 866-881
+peak found for 3743559068799
+2022-01-08 16:34:59: Peak found, parallel search of blocks: 866-881, 9 seconds
+2022-01-08 16:35:27: Search complete, 28 seconds
+Saving checkpoint at block 867
+2022-01-08 16:35:36: Fast parallel search of blocks: 867-870
+2022-01-08 16:35:42: Search complete, 6 seconds
+Saving checkpoint at block 871
+2022-01-08 16:35:44: Fast parallel search of blocks: 871-874
+peak found for 3743559068799
+2022-01-08 16:35:50: Peak found, parallel search of blocks: 871-874, 6 seconds
+2022-01-08 16:36:07: 3743559068799: 1549* 11272258 1137546465 1309597896
+2022-01-08 16:36:07:	7487118137598: 1550 predicted (1743)
+2022-01-08 16:36:17: Search complete, 27 seconds
+Saving checkpoint at block 872
+2022-01-08 16:36:27: Fast parallel search of blocks: 872-883
+2022-01-08 16:36:33: Search complete, 6 seconds
+Saving checkpoint at block 884
+2022-01-08 16:36:40: Search of block: 884
+2022-01-08 16:37:05: Search complete, 25 seconds
+Saving checkpoint at block 885
+2022-01-08 16:37:07: Fast parallel search of blocks: 885-900
+2022-01-08 16:37:14: Search complete, 7 seconds
+Saving checkpoint at block 901
+2022-01-08 16:37:15: Fast parallel search of blocks: 901-916
+2022-01-08 16:37:22: Search complete, 7 seconds
+Saving checkpoint at block 917
+2022-01-08 16:37:23: Fast parallel search of blocks: 917-932
+2022-01-08 16:37:30: Search complete, 7 seconds
+Saving checkpoint at block 933
+2022-01-08 16:37:44: Fast parallel search of blocks: 933-999
+2022-01-08 16:38:16: Search complete, 32 seconds
+Saving checkpoint at block 1000

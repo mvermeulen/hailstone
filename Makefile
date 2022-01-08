@@ -6,7 +6,7 @@ LOOKUP_WIDTH=20
 CUTOFF_WIDTH=16
 POLY_WIDTH=10
 CFLAGS=-no-pie -O3 -march=native -fopenmp
-CC=gcc -DDEBUG=$(DEBUG)
+CC=gcc -fcommon -DDEBUG=$(DEBUG)
 
 all:	hailstone.daemon hailstone.daemonf hailmgr
 
