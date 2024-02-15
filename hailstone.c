@@ -138,14 +138,14 @@ int fast_search(uint64_t blocknum){
 	 }
 	 num = num >> fp->div2;
 	 num = num * fp->mul3 + fp->add;
-	 n[0] = num & 0xffffffff;
-	 n[1] = num >> 32;
 	 steps = fp->steps;	
 
 	 peak_found = 0;
 #if EXPERIMENTAL
 	 hail64an(num,steps,global_maxsteps,global_maxvalue_size,global_maxvalue,&peak_found);
 #else
+	 n[0] = num & 0xffffffff;
+	 n[1] = num >> 32;
 	 hail64pnf(n,&steps,&global_maxsteps,global_maxvalue,global_maxvalue_size,&peak_found);
 	 hail32pnf(n,&steps,&global_maxsteps,global_maxvalue,global_maxvalue_size,&peak_found);
 #endif
@@ -178,12 +178,12 @@ int fast_search(uint64_t blocknum){
 	   continue;
 	 }
 	 steps = 0;
-	 n[0] = (j<<CUTOFF_WIDTH)|i;
-	 n[1] = blocknum;
 	 peak_found = 0;
 #if EXPERIMENTAL
 	 hail64am(num,steps,global_maxsteps,global_maxvalue_size,global_maxvalue,&peak_found);
 #else
+	 n[0] = (j<<CUTOFF_WIDTH)|i;
+	 n[1] = blocknum;
 	 hail64pmf(n,&steps,&global_maxsteps,global_maxvalue,global_maxvalue_size,&peak_found);
 	 hail32pnf(n,&steps,&global_maxsteps,global_maxvalue,global_maxvalue_size,&peak_found);
 #endif
