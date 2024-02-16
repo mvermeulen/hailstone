@@ -3,6 +3,7 @@
 #include <assert.h>
 #define CHECK_MAXVALUE
 #define CUTOFF_CLZ
+#define ODD_ONLY
 
 unsigned long pow3[] = {
   1,
@@ -49,8 +50,9 @@ void hail64yn
 	      unsigned __int128 global_maxvalue128,
 	      int32_t *peak_found
 ){
-  // assume we operate on an odd number...
+#ifdef ODD_ONLY
   assert(num&0x1 != 0);
+#endif
   
   unsigned __int128 n = num;
   int alpha, beta,gamma;
@@ -72,7 +74,7 @@ void hail64yn
     steps = steps + alpha + alpha + beta;
 #ifdef CUTOFF_CLZ
     // cutoff if #steps + maximum for this level < global_maxsteps
-    gamma = __builtin_clz(n);
+    gamma = __builtin_clzl(n);
     if ((steps + clz64[gamma]) < global_maxsteps) return;
 #endif
   }
@@ -141,7 +143,11 @@ int main(void){
     fprintf(stderr,"__int128 != 16 bytes");
     return 0;
   }
-  for (n=1;n < (1ul<<32);n+=2){
+#ifdef ODD_ONLY
+  for (n=1;n < (1ul<<32);n += 2){  
+#else
+  for (n=1;n < (1ul<<32);n++){
+#endif
     peak_found = 0;
 #ifdef CHECK_MAXVALUE
     hail64ym(n,0,global_maxsteps,half_global_maxvalue128,&peak_found);
