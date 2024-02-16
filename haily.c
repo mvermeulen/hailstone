@@ -3,7 +3,12 @@
 #include <assert.h>
 #define CHECK_MAXVALUE
 #define CUTOFF_CLZ
-//#define ODD_ONLY
+#define LOOKUP20
+#define ODD_ONLY
+
+#ifdef LOOKUP20
+extern int steps20[];
+#endif
 
 unsigned long pow3[] = {
   1,
@@ -56,7 +61,11 @@ void hail64yn
   
   unsigned __int128 n = num;
   int alpha, beta,gamma;
+#ifdef LOOKUP20
+  while(n > (1<<20)){
+#else
   while(n > 1){
+#endif
     n = n + 1;
     alpha = __builtin_ctzl(n);
     if (alpha > MAXALPHA) alpha = MAXALPHA;
@@ -78,6 +87,9 @@ void hail64yn
     if ((steps + clz64[gamma]) < global_maxsteps) return;
 #endif
   }
+#ifdef LOOKUP20
+  steps += steps20[n];
+#endif
   if (steps > global_maxsteps){
     *peak_found = 1;
   }
