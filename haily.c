@@ -3,7 +3,7 @@
 #include <assert.h>
 #define CHECK_MAXVALUE
 #define CUTOFF_CLZ
-#define ODD_ONLY
+//#define ODD_ONLY
 
 unsigned long pow3[] = {
   1,
