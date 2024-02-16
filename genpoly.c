@@ -185,10 +185,16 @@ int main(int argc,char **argv){
     }
     printf("};\n");
     return 0;
-  } 
-  final_idx = alloca(sizeof(int)*(1<<width));
-  max_idx = alloca(sizeof(int)*(1<<width));
-  dup_idx = alloca(sizeof(int)*(1<<width));
+  }
+  if (width <= 16){
+    final_idx = alloca(sizeof(int)*(1<<width));
+    max_idx = alloca(sizeof(int)*(1<<width));
+    dup_idx = alloca(sizeof(int)*(1<<width));
+  } else {
+    final_idx = malloc(sizeof(int)*(1<<width));
+    max_idx = malloc(sizeof(int)*(1<<width));
+    dup_idx = malloc(sizeof(int)*(1<<width));    
+  }
   // compute polynomials
   if (vflag){ printf("/* polynomial table\n"); }
   for (i=0;i<(1<<width);i++){
