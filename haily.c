@@ -40,7 +40,6 @@ int global_maxsteps;
 unsigned __int128 half_global_maxvalue128;
 unsigned __int128 global_maxvalue128;
 int clz64[64] = { 0 };
-int clz64_min = sizeof(clz64)/sizeof(clz64[0]);
 
 // compute a fast hailstone and set a flag if a peak is found
 #ifdef CHECK_MAXVALUE
@@ -127,9 +126,6 @@ void update_peak(uint64_t num){
       global_maxsteps = steps;
       gamma = __builtin_clzl(num);
       clz64[gamma] = steps;
-      // clz64_min is the first index that is OK
-      // Note: Makes an implicit assumption that these are updated in order as the search progresses...
-      if (gamma < clz64_min) clz64_min = gamma;
       printf("*");
     }
     if (maxval32[3] != 0) printf(" %u",maxval32[3]);
