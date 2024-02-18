@@ -21,6 +21,7 @@ int cflag = 0;
 char *checkpoint_file = CHECKPOINT_NAME;
 int dflag = 0;
 int fflag = 0;
+int f2flag = 0;
 int lflag = 0;
 FILE *logfile = NULL;
 int nflag = 0;
@@ -43,7 +44,7 @@ char *usage[] = {
 int parse_options(int argc,char **argv){
   int opt;
   int i;
-  while ((opt = getopt(argc,argv,"b:c:dfl:n:w:?")) != -1){
+  while ((opt = getopt(argc,argv,"b:c:dfFl:n:w:?")) != -1){
     switch(opt){
     case 'b':
       bflag = 1;
@@ -59,6 +60,9 @@ int parse_options(int argc,char **argv){
     case 'f':
       fflag = 1;
       break;
+    case 'F':
+      f2flag = 1;
+      break;      
     case 'l':
       lflag = 1;
       if (!strcmp(optarg,"-")) logfile = stdout;
@@ -89,6 +93,10 @@ int parse_options(int argc,char **argv){
   }
   if (bflag == 1 && fflag == 1){
     fprintf(stderr,"The -f flag can not be given when start block is 0\n");
+    goto usage;
+  }
+  if (fflag == 1 && f2flag == 1){
+    fprintf(stderr,"Both -f and -F given\n");
     goto usage;
   }
   if (lflag == 0) logfile = stdout;
@@ -199,6 +207,57 @@ int fast_search(uint64_t blocknum){
   return 0;
 }
 
+// conduct a fast search using the power of 3 algorithm - return 1 if peaks are found, 0 otherwise
+int fast_search2(uint64_t blocknum){
+  unsigned int i,j;
+  uint64_t num;
+  int no_max;
+  int32_t peak_found;
+  int32_t steps;
+  for (i=0;i<(1<<CUTOFF_WIDTH);i++){
+    if (cutoff16[i] & 0x80) continue; // duplicate polynomial
+    if (cutoff16[i] & 0x40){
+      no_max = 1;
+    } else {
+      no_max = 0;
+    }
+    for (j=0;j<(1<<(32-CUTOFF_WIDTH));j++){
+      num = (blocknum << 32)|(j<<CUTOFF_WIDTH)|i;
+      // ignore evens + 5 mod 6 + 2,4,8 mod 9
+      switch(num%18){
+      case 0: // even
+      case 2: // even, 2 mod 9
+      case 4: // even, 4 mod 9
+      case 5: // 5 mod 6
+      case 6: // even
+      case 8: // even, 8 mod 9
+      case 10: // even
+      case 11: // 2 mod 9, 5 mod 6
+      case 12: // even
+      case 13: // 4 mod 9
+      case 14: // even
+      case 16: // even
+      case 17: // 8 mod 9, 5 mod 6
+	continue;
+      }
+      peak_found = 0;
+      steps = 0;
+      if (no_max){
+	hail64yn(num,steps,global_maxsteps,&peak_found);
+      } else {
+	hail64ym(num,steps,global_maxsteps,half_global_maxvalue128,&peak_found);
+      }
+      if (peak_found){
+	if (!dflag)
+	  fprintf(logfile,"peak found for %lu\n",(blocknum<<32)|(j<<CUTOFF_WIDTH)|i);
+	// oops we found one, so exit for more complete search
+	return 1;
+      }	
+    }
+  }
+  return 0;
+}
+  
 int main(int argc,char **argv){
   uint64_t i,j;
   time_t start_time,start_time2,now;
@@ -236,7 +295,7 @@ int main(int argc,char **argv){
 	found_peak = 0;
 #pragma omp parallel for shared(found_peak)
 	for (j=0;j<num_blocks;j++){
-	  if (fast_search(start_block+j))
+	  if ((f2flag?fast_search2:fast_search)(start_block+j))
 	    found_peak = 1;
 	}
 	packet.message = (found_peak)? HAIL_PEAKFOUND : HAIL_NOPEAK;
@@ -277,7 +336,7 @@ int main(int argc,char **argv){
 	found_peak = 0;
 #pragma omp parallel for shared(found_peak)
 	for (j=0;j<wvalue;j++){
-	  if (fast_search(start_block+i+j)){
+	  if ((f2flag?fast_search2:fast_search)(start_block+i+j)){
 	    found_peak = 1;
 	  }
 	}
@@ -299,7 +358,7 @@ int main(int argc,char **argv){
     } else if (check_prediction(start_block+i) == 0){
       // no parallel search but try a fast search first
       fprintf(logfile,"%s: Fast search of block: %lu\n",timebuf,start_block+i);
-      if (fast_search(start_block+i)){
+      if ((f2flag?fast_search2:fast_search)(start_block+i)){
 	time(&start_time2);
 	localtime_r(&start_time2,&tmval);
 	strftime(timebuf,sizeof(timebuf),"%F %T",&tmval);

@@ -10,6 +10,9 @@ int32_t global_maxsteps_found;
 int32_t global_maxvalue_size;
 uint32_t global_maxvalue[MAXDIGITS];
 int32_t global_maxsteps;
+extern unsigned __int128 half_global_maxvalue128;
+extern unsigned __int128 global_maxvalue128;
+extern unsigned long pow3[];
 
 int clz32[32];
 int clz64[64];
@@ -37,6 +40,8 @@ void hailxm(uint32_t *n,int32_t nsize,int32_t *steps,int32_t *maxsteps,uint32_t 
 void hailxn(uint32_t *n,int32_t nsize,int32_t *steps,int32_t *maxsteps,uint32_t *maxvalue,int32_t maxvalue_size);
 void hailxmf(uint32_t *n,int32_t nsize,int32_t *steps,int32_t *maxsteps,uint32_t *maxvalue,int32_t maxvalue_size,int32_t *peak_found);
 void hailxnf(uint32_t *n,int32_t nsize,int32_t *steps,int32_t *maxsteps,uint32_t *maxvalue,int32_t maxvalue_size,int32_t *peak_found);
+void hail64ym(uint64_t num,int32_t steps,int32_t global_maxsteps,unsigned __int128 global_maxvalue128,int32_t *peak_found);
+void hail64yn(uint64_t num,int32_t steps,int32_t global_maxsteps,int32_t *peak_found);
 
 #if defined LOOKUP_WIDTH
 #if LOOKUP_WIDTH == 8

@@ -9,6 +9,7 @@
 #include <x86intrin.h>
 #include "hailstone.h"
 
+
 // initialize globals
 int32_t global_maxvalue_found __attribute__ ((aligned(16))) = 0;
 int32_t global_maxsteps_found __attribute__ ((aligned(16))) = 0;
@@ -174,9 +175,13 @@ void recover_checkpoint_file(void){
   }
   status = fscanf(checkfile,"Maxsteps: %d\n",&global_maxsteps);
   status = fscanf(checkfile,"Maxvalue: %d:",&global_maxvalue_size);
+  global_maxvalue128 = 0;
   for (i=0;i<global_maxvalue_size;i++){
     status = fscanf(checkfile,"%u",&global_maxvalue[i]);
+    if (i!=0) global_maxvalue128 <<= 32;
+    global_maxvalue128 |= global_maxvalue[i];
   }
+  half_global_maxvalue128 = global_maxvalue128 >> 1;
   status = fscanf(checkfile,"%s",predictstring);
   while (fscanf(checkfile,"%lu",&block) == 1){
     add_predict_block(block);
@@ -300,3 +305,77 @@ void search_block(uint64_t blocknum){
   }
   return;
 }
+
+unsigned long pow3[] = {
+  1,
+  3,
+  3*3,
+  3*3*3,
+  3*3*3*3,
+  3*3*3*3*3,
+  3*3*3*3*3*3,
+  3*3*3*3*3*3*3,
+  3*3*3*3*3*3*3*3,
+  3*3*3*3*3*3*3*3*3,
+  3*3*3*3*3*3*3*3*3*3,  // 10
+  3*3*3*3*3*3*3*3*3*3*3,  
+  3*3*3*3*3*3*3*3*3*3*3*3,
+  3*3*3*3*3*3*3*3*3*3*3*3*3,
+  3*3*3*3*3*3*3*3*3*3*3*3*3*3,
+  3*3*3*3*3*3*3*3*3*3*3*3*3*3*3,
+  3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3,
+  3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3,
+  3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3,
+  3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3,
+  3ul*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3, // 20
+};
+
+
+// compute a slow hailstone and update the peaks
+unsigned __int128 half_global_maxvalue128 = 0;
+unsigned __int128 global_maxvalue128 = 0;
+void update_peak128(uint64_t num){
+  unsigned __int128 maxvalue = 0;
+  unsigned __int128 n = num;
+  int steps = 0;
+  while (n > 1){
+    if (n & 0x1){
+      n = n * 3 + 1;
+      if (n > maxvalue) maxvalue = n;
+    } else {
+      n = n >> 1;
+    }
+    steps++;
+  }
+  if ((steps > global_maxsteps) || (maxvalue > global_maxvalue128)){
+    // convert to 4x32 for printing comparison
+    uint32_t maxval32[4];
+    unsigned __int128 value = maxvalue;
+    int i;
+    int gamma;
+    maxval32[0] = value & 0xffffffff;
+    value = value >> 32;
+    maxval32[1] = value & 0xffffffff;
+    value = value >> 32;    
+    maxval32[2] = value & 0xffffffff;
+    maxval32[3] = value >> 32;
+    printf("%lu: %d",num,steps);
+    if (steps > global_maxsteps){
+      global_maxsteps = steps;
+      gamma = __builtin_clzl(num);
+      clz64[gamma] = steps;
+      printf("*");
+    }
+    if (maxval32[3] != 0) printf(" %u",maxval32[3]);
+    if (maxval32[2] != 0) printf(" %u",maxval32[2]);
+    if (maxval32[1] != 0) printf(" %u",maxval32[1]);
+    printf(" %u",maxval32[0]);
+    if (maxvalue > global_maxvalue128){
+      half_global_maxvalue128 = maxvalue >> 1;
+      global_maxvalue128 = maxvalue;
+      printf("*");
+    }
+    printf("\n");
+  }
+}
+

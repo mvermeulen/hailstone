@@ -1,45 +1,21 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <assert.h>
-#define CHECK_MAXVALUE
+#include "hailstone.h"
+
 #define CUTOFF_CLZ
-#define LOOKUP20
 #define ODD_ONLY
 
 #ifdef LOOKUP20
 extern int steps20[];
 #endif
 
-unsigned long pow3[] = {
-  1,
-  3,
-  3*3,
-  3*3*3,
-  3*3*3*3,
-  3*3*3*3*3,
-  3*3*3*3*3*3,
-  3*3*3*3*3*3*3,
-  3*3*3*3*3*3*3*3,
-  3*3*3*3*3*3*3*3*3,
-  3*3*3*3*3*3*3*3*3*3,  // 10
-  3*3*3*3*3*3*3*3*3*3*3,  
-  3*3*3*3*3*3*3*3*3*3*3*3,
-  3*3*3*3*3*3*3*3*3*3*3*3*3,
-  3*3*3*3*3*3*3*3*3*3*3*3*3*3,
-  3*3*3*3*3*3*3*3*3*3*3*3*3*3*3,
-  3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3,
-  3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3,
-  3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3,
-  3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3,
-  3ul*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3*3, // 20
-};
-
 #define MAXALPHA	20
 
+#ifdef STANDALONE_TEST
 int global_maxsteps;
-unsigned __int128 half_global_maxvalue128;
-unsigned __int128 global_maxvalue128;
 int clz64[64] = { 0 };
+#endif
 
 // compute a fast hailstone and set a flag if a peak is found
 #ifdef CHECK_MAXVALUE
@@ -50,8 +26,12 @@ void hail64yn
 (
 	      uint64_t num,
 	      int32_t steps,
+#ifdef CHECK_MAXSTEPS
 	      int32_t global_maxsteps,
+#endif
+#ifdef CHECK_MAXVALUE
 	      unsigned __int128 global_maxvalue128,
+#endif
 	      int32_t *peak_found
 ){
 #ifdef ODD_ONLY
@@ -60,11 +40,21 @@ void hail64yn
   
   unsigned __int128 n = num;
   int alpha, beta,gamma;
-#ifdef LOOKUP20
-  while(n > (1<<20)){
+  while(n >
+#if LOOKUP_WIDTH == 8
+	(1<<8)
+#elif LOOKUP_WIDTH == 10
+	(1<<10)
+#elif LOOKUP_WIDTH == 16
+	(1<<16)
+#elif LOOKUP_WIDTH == 20
+	(1<<20)
+#elif LOOKUP_WIDTH == 24
+	(1<<24)
 #else
-  while(n > 1){
+	1
 #endif
+	){	
     n = n + 1;
     alpha = __builtin_ctzl(n);
     if (alpha > MAXALPHA) alpha = MAXALPHA;
@@ -86,17 +76,30 @@ void hail64yn
     if ((steps + clz64[gamma]) < global_maxsteps) return;
 #endif
   }
-#ifdef LOOKUP20
+#if LOOKUP_WIDTH == 8
+  steps += steps8[n];
+#elif LOOKUP_WIDTH == 10
+  steps += steps10[n];
+#elif LOOKUP_WIDTH == 16
+  steps += steps16[n];
+#elif LOOKUP_WIDTH == 20
   steps += steps20[n];
+#elif LOOKUP_WIDTH == 24
+  steps += steps24[n];
 #endif
+#ifdef CHECK_MAXSTEPS
   if (steps > global_maxsteps){
     *peak_found = 1;
   }
+#endif
   return;
 }
 
+#ifdef STANDALONE_TEST
+unsigned __int128 half_global_maxvalue128 = 0;
+unsigned __int128 global_maxvalue128 = 0;
 // compute a slow hailstone and update the peaks
-void update_peak(uint64_t num){
+void update_peak128(uint64_t num){
   unsigned __int128 maxvalue = 0;
   unsigned __int128 n = num;
   int steps = 0;
@@ -167,3 +170,4 @@ int main(void){
     }
   }
 }
+#endif
