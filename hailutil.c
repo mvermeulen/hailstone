@@ -153,6 +153,7 @@ void record_peak(unsigned long int n,unsigned long int block){
   fflush(logfile);
 }
 
+extern void print128(unsigned __int128);
 void recover_checkpoint_file(void){
   unsigned long int block;
   FILE *checkfile;
@@ -175,13 +176,14 @@ void recover_checkpoint_file(void){
   }
   status = fscanf(checkfile,"Maxsteps: %d\n",&global_maxsteps);
   status = fscanf(checkfile,"Maxvalue: %d:",&global_maxvalue_size);
+  unsigned __int128 ldigit;
   global_maxvalue128 = 0;
   for (i=0;i<global_maxvalue_size;i++){
     status = fscanf(checkfile,"%u",&global_maxvalue[i]);
-    if (i!=0) global_maxvalue128 <<= 32;
-    global_maxvalue128 |= global_maxvalue[i];
+    ldigit = global_maxvalue[i];
+    global_maxvalue128 += (ldigit << (i*32));
   }
-  half_global_maxvalue128 = global_maxvalue128 >> 1;
+  half_global_maxvalue128 = (global_maxvalue128 >> 1);
   status = fscanf(checkfile,"%s",predictstring);
   while (fscanf(checkfile,"%lu",&block) == 1){
     add_predict_block(block);

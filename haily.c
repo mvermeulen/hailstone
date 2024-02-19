@@ -17,6 +17,25 @@ int global_maxsteps;
 int clz64[64] = { 0 };
 #endif
 
+void print128(unsigned __int128);
+#ifdef CHECK_MAXVALUE
+void print128(unsigned __int128 n){
+  int i, idx;
+  char digits[40];
+  for (i=0;i<40;i++) digits[40] = ' ';
+  idx = 0;
+  while (n >= 10){
+    digits[idx] = (n % 10) + '0';
+    n = n / 10;
+    idx++;
+  }
+  digits[idx] = n + '0';  
+  for (i=idx;i>=0;i--){
+    printf("%c",digits[i]);
+  }
+}
+#endif
+
 // compute a fast hailstone and set a flag if a peak is found
 #ifdef CHECK_MAXVALUE
 void hail64ym

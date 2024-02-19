@@ -17,7 +17,7 @@ hailstone.daemonf:	hailstonef.o hailutil.o hail64am.o hail64an.o hail64pm.o hail
 	$(CC) $(CFLAGS) -o hailstone.daemonf hailutil.o hailstonef.o hail64am.o hail64an.o hailym.o hailyn.o hail64pm.o hail64pn.o hail64m.o hail64n.o hail32m.o hail32pm.o hail32pn.o steps$(LOOKUP_WIDTH).o cutoff$(CUTOFF_WIDTH).o fpoly$(POLY_WIDTH).o mpoly$(POLY_WIDTH).o hailxmf.o hailxnf.o hailxm.o hailxn.o fpoly16.o mpoly16.o
 
 hailmgr:	hailmgr.o hailutil.o hail64pm.o hail64pn.o hail64m.o hail64n.o hail32pm.o hail32pn.o hail32m.o hail32n.o hailxm.o hailxn.o steps$(LOOKUP_WIDTH).o cutoff$(CUTOFF_WIDTH).o mpoly$(POLY_WIDTH).o fpoly$(POLY_WIDTH).o
-	$(CC) -o hailmgr $(CFLAGS) hailmgr.o hailutil.o hail64pm.o hail64pn.o hail64m.o hail64n.o hail32pm.o hail32pn.o hail32m.o hail32n.o hailxm.o hailxn.o steps$(LOOKUP_WIDTH).o cutoff$(CUTOFF_WIDTH).o mpoly$(POLY_WIDTH).o fpoly$(POLY_WIDTH).o
+	$(CC) -o hailmgr $(CFLAGS) hailmgr.o hailutil.o hail64pm.o hail64pn.o hail64m.o hail64n.o hail32pm.o hail32pn.o hail32m.o hail32n.o hailxm.o hailxn.o steps$(LOOKUP_WIDTH).o cutoff$(CUTOFF_WIDTH).o mpoly$(POLY_WIDTH).o fpoly$(POLY_WIDTH).o hailym.o hailyn.o
 
 hailstone.o:	hailstone.c hailstone.h steps$(LOOKUP_WIDTH).c cutoff$(CUTOFF_WIDTH).c fpoly$(POLY_WIDTH).c mpoly$(POLY_WIDTH).c
 	$(CC) -c -o hailstone.o $(CFLAGS) -DPOLYNOMIAL=1 -DLOOKUP_WIDTH=$(LOOKUP_WIDTH) -DCUTOFF_WIDTH=$(CUTOFF_WIDTH) -DPOLY_WIDTH=$(POLY_WIDTH) hailstone.c
