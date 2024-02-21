@@ -171,6 +171,10 @@ int main(int argc,char **argv){
       exit(0);
     }
   }
+  if (width > 20){
+    fprintf(stderr,"width > 20: %d\n",width);
+    exit(0);
+  }
   for (i=0;i<32;i++){
     powers_of_2[i] = pow2;
     powers_of_3[i] = pow3;
